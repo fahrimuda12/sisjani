@@ -1,12 +1,12 @@
-@extends('admin.main')
+@extends('user.main')
 @session('content')
     <!--wrapper-->
 	<div class="wrapper">
 		<!--sidebar wrapper -->
-		@include('admin.components.sidebar')
+		@include('user.components.sidebar')
 		<!--end sidebar wrapper -->
 		<!--start header -->
-		@include('admin.components.header')
+		@include('user.components.header')
 		<!--end header -->
 		<!--start page wrapper -->
 		<div class="page-wrapper">

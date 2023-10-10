@@ -17,6 +17,12 @@ return new class extends Migration
             $table->string('ruangan');
             $table->dateTime('tgl_mulai');
             $table->dateTime('tgl_selesai');
+            $table->string('snack');
+            $table->string('status');
+            $table->dateTime('created_at');
+            $table->dateTime('updated_at');
+            $table->string('requested_by');
+            $table->string('approved_by');
             // $table->timestamps();
         });
     }

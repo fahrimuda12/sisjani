@@ -16,6 +16,8 @@ class JadwalModel extends Model
         'nama',
         'ruangan',
         'tgl_mulai',
-        'tgl_selesai'
+        'tgl_selesai',
+        'snack',
+        'status'
     ];
 }

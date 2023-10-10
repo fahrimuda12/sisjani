@@ -12,18 +12,18 @@
 	<!--favicon-->
 	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
 	<!--plugins-->
-	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-	<link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+	<link href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
 	<!-- loader-->
-	<link href="assets/css/pace.min.css" rel="stylesheet" />
-	<script src="assets/js/pace.min.js"></script>
+	<link href="{{ asset('assets/css/pace.min.css') }}" rel="stylesheet" />
+	<script src="{{ asset('assets/js/pace.min.js') }}"></script>
 	<!-- Bootstrap CSS -->
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="assets/css/bootstrap-extended.css" rel="stylesheet">
+	<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/css/bootstrap-extended.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
-	<link href="assets/css/app.css" rel="stylesheet">
-	<link href="assets/css/icons.css" rel="stylesheet">
+	<link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet">
 	<title>SISJANI | {{ $title }}</title>
 </head>
 
@@ -38,7 +38,7 @@
 
                         <div class="card shadow-none bg-transparent shadow-none rounded-0 mb-0">
 							<div class="card-body">
-                                 <img src="assets/images/login-images/login-cover.svg" class="img-fluid auth-img-cover-login" width="650" alt=""/>
+                                 <img src="{{ asset('assets/images/login-images/login-cover.svg') }}" class="img-fluid auth-img-cover-login" width="650" alt=""/>
 							</div>
 						</div>
 						
@@ -49,7 +49,7 @@
 							<div class="card-body p-sm-5">
 								<div class="">
 									<div class="mb-3 text-center">
-										<img src="assets/images/logo-icon.png" width="183" alt="">
+										<img src="{{ asset('assets/images/logo-icon.png') }}" width="183" alt="">
 									</div>
 									<div class="text-center mb-4">
 										<h5 class="">Sistem Informasi Juanda Aktivitas Terkini (SISJANI)</h5>

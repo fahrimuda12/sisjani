@@ -116,6 +116,14 @@ a {
 
 
 
+.logo-icon-sidebar {
+
+	padding: 0 15px;
+
+}
+
+
+
 .logo-text {
 
 	font-size: 22px;
@@ -227,6 +235,31 @@ a {
 	border-top: 1px solid #e4e4e4;
 
 	z-index: 3
+
+}
+
+
+.marquee-footer {
+
+	background: #fff;
+
+	left: 0px;
+
+	right: 0;
+
+	bottom: 0;
+
+	position: fixed;
+
+	text-align: center;
+
+	padding: 3px;
+
+	font-size: 20px;
+
+	border-top: 1px solid #e4e4e4;
+
+	z-index: 11
 
 }
 
