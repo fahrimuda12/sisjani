@@ -27,10 +27,10 @@ Route::middleware('auth')->group(function(){
     Route::middleware('admin')->prefix('admin')->group(function (){
         Route::get('/dashboard', [AdminController::class, 'index']);
         Route::prefix('jadwal')->group(function (){
-            Route::get('/', [AdminController::class, 'getJadwal']);
+            // Route::get('/', [AdminController::class, 'getJadwal']);
             Route::get('/history', [AdminController::class, 'getHistory']);
-            Route::get('/tambah', [AdminController::class, 'addJadwal']);
-            Route::post('/tambah', [AdminController::class, 'saveJadwal']);
+            Route::get('/input', [AdminController::class, 'addJadwal']);
+            Route::post('/input', [AdminController::class, 'saveJadwal']);
         });
 
     });

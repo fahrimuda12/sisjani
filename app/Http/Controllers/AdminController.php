@@ -11,21 +11,23 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $jadwal = JadwalModel::all();
+        //$jadwal = JadwalModel::all();
+        $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
         return view('admin.pages.dashboard', [
             'title' => 'Dashboard',
             'jadwal' => $jadwal
         ]);
     }
 
-    public function getJadwal()
-    {
-        $jadwal = JadwalModel::all();
-        return view('admin.pages.dashboard', [
-            'title' => 'Jadwal',
-            'jadwal' => $jadwal
-        ]);
-    }
+    // public function getJadwal()
+    // {
+    //     //$jadwal = JadwalModel::all();
+    //     $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
+    //     return view('admin.pages.dashboard', [
+    //         'title' => 'Jadwal',
+    //         'jadwal' => $jadwal
+    //     ]);
+    // }
 
     public function getHistory()
     {
@@ -38,8 +40,8 @@ class AdminController extends Controller
 
     public function addJadwal()
     {
-        return view('admin.pages.tambah-jadwal', [
-            'title' => 'Tambah Jadwal',
+        return view('admin.pages.input-jadwal', [
+            'title' => 'Input Jadwal',
         ]);
     }
 
@@ -48,17 +50,24 @@ class AdminController extends Controller
         $request->validate([
             'nama' => 'required',
             'ruangan' => 'required',
-            'tanggal_mulai' => 'required',
-            'tanggal_selesai' => 'required',
+            'tgl_mulai' => 'required',
+            'tgl_selesai' => 'required',
+            'snack' => 'required',
+            'status' => 'required',
+            'created_at' => 'required',
+            
         ]);
 
         JadwalModel::create([
             'nama' => $request->nama,
             'ruangan' => $request->ruangan,
-            'tgl_mulai' => $request->tanggal_mulai,
-            'tgl_selesai' => $request->tanggal_selesai,
+            'tgl_mulai' => $request->tgl_mulai,
+            'tgl_selesai' => $request->tgl_selesai,
+            'snack' => $request->snack,
+            'status' => $request->status,
+            'created_at' => Carbon::now(),
         ]);
 
-        return redirect('/admin/jadwal')->with('success', 'Data berhasil ditambahkan');
+        return redirect('/admin/dashboard')->with('success', 'Data berhasil ditambahkan');
     }
 }

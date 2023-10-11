@@ -1,0 +1,149 @@
+@extends('admin.main')
+@session('content')
+    <!--wrapper-->
+	<div class="wrapper">
+		<!--sidebar wrapper -->
+		@include('admin.components.sidebar')
+		<!--end sidebar wrapper -->
+		<!--start header -->
+		@include('admin.components.header')
+		<!--end header -->
+		<!--start page wrapper -->
+		<div class="page-wrapper">
+			<div class="page-content">
+				<div class="col-xl-9 mx-auto"> <!--full/tidak-->
+                <!--breadcrumb-->
+				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+					{{-- <div class="breadcrumb-title pe-3">Input Jadwal rapat</div> --}}
+					<div class="ps-3">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0 p-0">
+								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+								</li>
+								<li class="breadcrumb-item active" aria-current="page">Input Jadwal Rapat</li>
+							</ol>
+						</nav>
+					</div>
+					{{-- <div class="ms-auto">
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary">Settings</button>
+							<button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
+							</button>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
+								<a class="dropdown-item" href="javascript:;">Another action</a>
+								<a class="dropdown-item" href="javascript:;">Something else here</a>
+								<div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
+							</div>
+						</div>
+					</div> --}}
+				</div>
+                <!--end breadcrumb-->
+				<div class="row">
+						{{-- <h6 class="mb-0 text-uppercase">Text Inputs</h6>
+						<hr/> --}}
+						<div class="card">
+							<div class="card-body">
+								<form action="/admin/jadwal/input" method="POST">
+									@csrf
+									<label for="nama" class="form-label">Nama Rapat</label>
+									<input name="nama" class="form-control mb-3" type="text" placeholder="Masukkan Nama Rapat" aria-label="default input example" required>
+									<label for="ruangan" class="form-label">Ruang Rapat</label>
+									<select name="ruangan" class="form-select mb-3" aria-label="Pilih Ruangan Rapat" required>
+										<option value="" disabled selected hidden>Pilih Ruangan</option>
+										<option value="R.Bromo">R.Bromo</option>
+										<option value="R.EOC">R.EOC</option>
+										<option value="R.Lawu">R.Lawu</option>
+										<option value="R.Raung">R.Raung</option>
+										<option value="Hall GSG">Hall GSG</option>
+										<option value="R.Kelas Kelud">R.Kelas Kelud</option> 
+										<option value="R.Procurement GSG Lt.II">R.Procurement GSG Lt.II</option>
+									</select>
+									<label for="tgl_mulai" class="form-label">Tanggal Mulai</label>
+									<input name="tgl_mulai" class="form-control mb-3" type="datetime-local" class="form-control" required>
+									<label for="tgl_selesai" class="form-label">Tanggal Selesai</label>
+									<input name="tgl_selesai" class="form-control mb-3" type="datetime-local" class="form-control" required>
+									<label for="snack" class="form-label">Jumlah Snack</label>
+									<div class="input-group mb-3">
+										<input name="snack" type="number" max="1000" class="form-control" placeholder="Masukkan Jumlah Snack" aria-label="snack" aria-describedby="snack"> <span class="input-group-text" id="snack" required>Pax</span>
+									</div>
+									<label for="status" class="form-label">Status Rapat</label>
+									<select name="status" class="form-select mb-3" aria-label="Pilih Status Rapat" required>
+										<option value="" disabled selected hidden>Pilih Status Rapat</option>
+										<option value="Internal">Internal</option>
+										<option value="Eksternal">Eksternal</option>
+									</select>
+									{{-- <div class="form-check">
+									<input class="form-check-input" type="checkbox" value="Internal" id="flexCheckIndeterminate" onclick="onlyOne(this)">
+									<label class="form-check-label" for="flexCheckIndeterminate">Internal</label>
+									<input class="form-check-input" type="checkbox" value="External" id="flexCheckIndeterminate" onclick="onlyOne(this)">
+									<label class="form-check-label mb-3" for="flexCheckIndeterminate">External</label>
+									</div> --}}
+									{{-- <div>
+									<label for="keterangan" class="form-label">Keterangan</label>
+									<textarea class="form-control" aria-label="keterangan"></textarea>
+									</div> --}}
+									<div class="d-md-flex d-grid align-items-center gap-3">
+										<button type="submit" class="btn btn-primary px-4">Submit</button>
+										<button type="reset" class="btn btn-light px-4">Reset</button>
+									</div>
+								</div>
+							</form>
+						</div>
+
+
+				<div class="card radius-10">
+					<div class="card-body">
+                        <form class="row g-3" action="/admin/jadwal/input" method="POST">
+                            @csrf
+                            <div class="col-md-12">
+                                <label for="input1" class="form-label">Nama</label>
+                                <input type="text" name="nama" class="form-control" id="input1" placeholder="First Name">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="ruangan" class="form-label">Ruangan</label>
+                                <select class="form-select" name="ruangan" id="ruangan" aria-label="Default select example">
+                                    <option selected>Ruangan</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                  </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="input6" class="form-label">Tanggal Mulai</label>
+                                <input type="datetime-local" name="tanggal_mulai" class="form-control" id="input6" placeholder="Date of Birth">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="input6" class="form-label">Tanggal Selesai</label>
+                                <input type="datetime-local" name="tanggal_selesai" class="form-control" id="input6" placeholder="Date of Birth">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="d-md-flex d-grid align-items-center gap-3">
+                                    <button type="submit" class="btn btn-primary px-4">Submit</button>
+                                    <button type="reset" class="btn btn-light px-4">Reset</button>
+                                </div>
+                            </div>
+                        </form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--end page wrapper -->
+		<!--start overlay-->
+		<div class="overlay toggle-icon"></div>
+		<!--end overlay-->
+		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+		<!--End Back To Top Button-->
+		<footer class="page-footer">
+			<p class="mb-0">Copyright © 2023. All right reserved.</p>
+		</footer>
+	</div>
+	<!--end wrapper-->
+	<script>
+		function onlyOne(checkbox) {
+			var checkboxes = document.getElementsByName('check')
+			checkboxes.forEach((item) => {
+				if (item !== checkbox) item.checked = false
+			})
+		}
+	</script>
+@endsession

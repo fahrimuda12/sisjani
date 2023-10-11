@@ -18,6 +18,6 @@ class JadwalModel extends Model
         'tgl_mulai',
         'tgl_selesai',
         'snack',
-        'status'
+        'status',
     ];
 }
