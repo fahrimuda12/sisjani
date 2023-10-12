@@ -33,7 +33,7 @@
 					<ul>
 						<li> <a href="app-emailbox.html"><i class='bx bx-radio-circle'></i>Konten</a>
 						</li>
-						<li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Running Text</a>
+						<li> <a href="/admin/running"><i class='bx bx-radio-circle'></i>Running Text</a>
 						</li>
 						{{-- <li> <a href="app-file-manager.html"><i class='bx bx-radio-circle'></i>File Manager</a>
 						</li>

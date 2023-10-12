@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\JadwalModel;
+use App\Models\RunningTextModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +39,15 @@ class AdminController extends Controller
         ]);
     }
 
+    public function getRunningText()
+    {
+        $text = RunningTextModel::all();
+        return view('admin.pages.running-text', [
+            'title' => 'Running Text',
+            'text' => $text
+        ]);
+    }
+
     public function addJadwal()
     {
         return view('admin.pages.input-jadwal', [
@@ -54,7 +64,7 @@ class AdminController extends Controller
             'tgl_selesai' => 'required',
             'snack' => 'required',
             'status' => 'required',
-            'created_at' => 'required',
+            // 'created_at' => 'required',
             
         ]);
 
@@ -65,7 +75,7 @@ class AdminController extends Controller
             'tgl_selesai' => $request->tgl_selesai,
             'snack' => $request->snack,
             'status' => $request->status,
-            'created_at' => Carbon::now(),
+            // 'created_at' => Carbon::now(),
         ]);
 
         return redirect('/admin/dashboard')->with('success', 'Data berhasil ditambahkan');
