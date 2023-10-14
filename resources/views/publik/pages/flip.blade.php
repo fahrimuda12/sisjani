@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<!-- Mirrored from codervent.com/syndron/demo/vertical/error-blank-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 29 Jul 2023 03:58:42 GMT -->
+<?php header('refresh:30;url=/');?>
+
+{{-- @extends('publik.main')
+@session('content-publik') --}}
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -28,9 +29,71 @@
 	{{-- <title>SISJANI | {{ $title }}</title> --}}
 </head>
 
-<body>
-    @yield('content-publik')
+	<!--wrapper-->
+	<div class="wrapper">
+		<!--sidebar wrapper -->
+		<div class="sidebar-wrapper" data-simplebar="true">
+			<div class="sidebar-header">
+				<a href="/login" target="_blank" rel="noreferrer noopener"><img src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon-sidebar" alt="logo icon"></a>
+			</div>
+			<div class="metismenu" id="menu">
+				<h3 id="hari" class="display-6"></h3>
+                <h3 id="tanggal" class="display-6"></h3>
+                <h3 id="jam" class="display-6"></h3>
+			</div>
+		</div>
+		<!--end sidebar wrapper -->
 
+		<!--start page wrapper -->
+		<div class="flip-wrapper">
+			<div class="flip-content">
+            <style>
+            .fadein { 
+            position:center; margin:0 auto;
+            background: #ebebeb;
+            /* padding: 10px; */
+            }
+            .fadein img{
+                position:absolute;
+                /* width: calc(83%); */
+                /* height: calc(83%); */
+                /* object-fit: scale-down; */
+            }
+            </style>
+
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+            <script>
+            $(function(){
+                $('.fadein img:gt(0)').hide();
+                setInterval(function(){$('.fadein :first-child').fadeOut().next('img').fadeIn().end().appendTo('.fadein');}, 3000);
+            });
+            </script>
+
+            <div class="fadein">
+                <?php 
+                // display images from directory
+                // directory path
+                $dir = "./slider/";
+                $scan_dir = scandir($dir);
+                shuffle($scan_dir);
+                foreach($scan_dir as $img):
+                    if(in_array($img,array('.','..')))
+                    continue;
+                ?>
+                <img src="<?php echo $dir.$img ?>" alt="<?php echo $img ?>">
+                <?php endforeach; ?>
+            </div>
+		</div>
+		<!--end page wrapper -->
+
+		<footer class="marquee-footer">
+            @forelse ($text as $key => $value)
+			<marquee class="mb-0" scrollamount='9'>{{$value->text}}</marquee>
+            @empty
+
+            @endforelse
+        </footer>
+	</div>
     <!-- Bootstrap JS -->
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 	<!--plugins-->
@@ -63,9 +126,4 @@
         updateTime(); // Panggil sekali saat halaman dimuat untuk menampilkan waktu awal
         setInterval(updateTime, 1000); // Update setiap 1 detik (1000ms)
     </script>
-
 </body>
-
-
-<!-- Mirrored from codervent.com/syndron/demo/vertical/error-blank-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 29 Jul 2023 03:58:42 GMT -->
-</html>

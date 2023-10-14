@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', [PublikController::class, 'index']);
+Route::get('/flip', [PublikController::class, 'flip']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -28,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::middleware('admin')->prefix('admin')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index']);
         Route::prefix('jadwal')->group(function () {
+        Route::get('/running', [AdminController::class, 'getRunningText']);
+        Route::prefix('jadwal')->group(function (){
             // Route::get('/', [AdminController::class, 'getJadwal']);
             Route::get('/history', [AdminController::class, 'getHistory']);
             Route::get('/input', [AdminController::class, 'addJadwal']);

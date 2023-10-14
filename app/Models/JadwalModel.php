@@ -20,4 +20,8 @@ class JadwalModel extends Model
         'snack',
         'status',
     ];
+    protected $casts = [
+        'tgl_mulai' => 'datetime',
+        'tgl_selesai' => 'datetime',
+    ];
 }
