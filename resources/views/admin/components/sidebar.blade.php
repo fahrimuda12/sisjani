@@ -1,41 +1,43 @@
 <div class="sidebar-wrapper" data-simplebar="true">
-			<div class="sidebar-header">
-				<div>
-					<img src="{{ asset('assets/images/logo-dashboard.png') }}" width=30 "logo-icon" alt="logo icon">
-				</div>
-				<div>
-					<h4 class="logo-text">SISJANI</h4>
-				</div>
-				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-back'></i>
-				</div>
-			 </div>
-			<!--navigation-->
-			<ul class="metismenu" id="menu">
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class='bx bx-home-alt'></i>
-						</div>
-						<div class="menu-title">Dashboard</div>
-					</a>
-					<ul>
-						<li> <a href="/admin/dashboard"><i class='bx bx-radio-circle'></i>Jadwal Rapat</a>
-						</li>
-						<li> <a href="/admin/jadwal/history"><i class='bx bx-radio-circle'></i>History Rapat</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-category"></i>
-						</div>
-						<div class="menu-title">Application</div>
-					</a>
-					<ul>
-						<li> <a href="app-emailbox.html"><i class='bx bx-radio-circle'></i>Konten</a>
-						</li>
-						<li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Running Text</a>
-						</li>
-						{{-- <li> <a href="app-file-manager.html"><i class='bx bx-radio-circle'></i>File Manager</a>
+    <div class="sidebar-header">
+        <div>
+            <img src="{{ asset('assets/images/logo-dashboard.png') }}" width=30 "logo-icon" alt="logo icon">
+        </div>
+        <div>
+            <h4 class="logo-text">SISJANI</h4>
+        </div>
+        <div class="toggle-icon ms-auto"><i class='bx bx-arrow-back'></i>
+        </div>
+    </div>
+    <!--navigation-->
+    <ul class="metismenu" id="menu">
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-home-alt'></i>
+                </div>
+                <div class="menu-title">Dashboard</div>
+            </a>
+            <ul>
+                <li> <a href="/admin/dashboard"><i class='bx bx-radio-circle'></i>Jadwal Rapat</a>
+                </li>
+                <li> <a href="/admin/jadwal/history"><i class='bx bx-radio-circle'></i>History Rapat</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Application</div>
+            </a>
+            <ul>
+                <li> <a href="/admin/user-management"><i class='bx bx-radio-circle'></i>User Management</a>
+                </li>
+                <li> <a href="/admin/konten"><i class='bx bx-radio-circle'></i>Konten</a>
+                </li>
+                <li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Running Text</a>
+                </li>
+                {{-- <li> <a href="app-file-manager.html"><i class='bx bx-radio-circle'></i>File Manager</a>
 						</li>
 						<li> <a href="app-contact-list.html"><i class='bx bx-radio-circle'></i>Contatcs</a>
 						</li>
@@ -45,9 +47,9 @@
 						</li>
 						<li> <a href="app-fullcalender.html"><i class='bx bx-radio-circle'></i>Calendar</a>
 						</li> --}}
-					</ul>
-				</li>
-				{{-- <li class="menu-label">UI Elements</li>
+            </ul>
+        </li>
+        {{-- <li class="menu-label">UI Elements</li>
 				<li>
 					<a href="widgets.html">
 						<div class="parent-icon"><i class='bx bx-cookie'></i>
@@ -339,6 +341,6 @@
 						<div class="menu-title">Support</div>
 					</a>
 				</li> --}}
-			</ul>
-			<!--end navigation-->
-		</div>
+    </ul>
+    <!--end navigation-->
+</div>
