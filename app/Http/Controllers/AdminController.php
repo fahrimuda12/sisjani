@@ -6,7 +6,6 @@ use App\Models\JadwalModel;
 use App\Models\RunningTextModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -16,7 +15,7 @@ class AdminController extends Controller
         $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
         return view('admin.pages.dashboard', [
             'title' => 'Dashboard',
-            'jadwal' => $jadwal
+            'jadwal' => $jadwal,
         ]);
     }
 
@@ -35,16 +34,16 @@ class AdminController extends Controller
         $jadwal = JadwalModel::where('tgl_selesai', '<', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
         return view('admin.pages.history-jadwal', [
             'title' => 'Jadwal',
-            'jadwal' => $jadwal
+            'jadwal' => $jadwal,
         ]);
     }
 
     public function getRunningText()
     {
-        $text = RunningTextModel::all();
+        $running = RunningTextModel::all();
         return view('admin.pages.running-text', [
             'title' => 'Running Text',
-            'text' => $text
+            'running' => $running,
         ]);
     }
 
@@ -65,7 +64,7 @@ class AdminController extends Controller
             'snack' => 'required',
             'status' => 'required',
             // 'created_at' => 'required',
-            
+
         ]);
 
         JadwalModel::create([

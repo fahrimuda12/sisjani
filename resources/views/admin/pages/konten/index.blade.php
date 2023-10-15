@@ -45,7 +45,9 @@
                                                     <a class="btn btn-outline-primary"
                                                         href="{{ url('/admin/konten/' . $value->id . '/edit') }}"><i
                                                             class='bx bxs-edit'></i></a>
-                                                    <a class="ms-3" href="javascript:;"><i class='bx bxs-trash'></i></a>
+                                                    <a class="ms-3"
+                                                        href="{{ url('/admin/konten/' . $value->id . '/hapus') }}"><i
+                                                            class='bx bxs-trash'></i></a>
                                                     </button>
                                                 </div>
                                             </td>

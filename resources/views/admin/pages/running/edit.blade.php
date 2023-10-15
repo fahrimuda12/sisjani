@@ -20,7 +20,7 @@
                                 <ol class="breadcrumb mb-0 p-0">
                                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Input konten</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Input running</li>
                                 </ol>
                             </nav>
                         </div>
@@ -40,14 +40,14 @@
                                             aria-label="Close"></button>
                                     </div>
                                 @endif
-                                <form action={{ '/admin/konten/' . $konten->id . '/edit' }} method="POST"
+                                <form action={{ '/admin/running/' . $running->id . '/edit' }} method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
-                                    <label for="foto" class="form-label">Konten</label>
-                                    <input name="foto" class="form-control mb-3" type="file"
+                                    <label for="text" class="form-label">Text</label>
+                                    <input name="text" class="form-control mb-3" type="text"
                                         placeholder="Masukkan Nama Rapat" aria-label="default input example"
-                                        aria-label="sdas" value="{{ $konten->foto }}" required>
-                                    @error('foto')
+                                        aria-label="sdas" value="{{ $running->text }}" required>
+                                    @error('text')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>

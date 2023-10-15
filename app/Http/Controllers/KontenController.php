@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\KontenModel;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -37,7 +36,7 @@ class KontenController extends Controller
         if (!empty($request->file('foto'))) {
             $file = $request->file('foto');
             $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('/uploads', $filename);
+            $file->move(public_path() . '/slider/', $filename);
         } else {
             return redirect()->to('/admin/konten')->withErro('Foto kosong');
         }
@@ -61,10 +60,10 @@ class KontenController extends Controller
 
     public function edit($id)
     {
-        $user = User::find($id);
+        $konten = KontenModel::find($id);
         return view('admin.pages.konten.edit', [
             'title' => 'Jadwal',
-            'user' => $user,
+            'konten' => $konten,
         ]);
     }
 
@@ -73,13 +72,12 @@ class KontenController extends Controller
         $this->validate($request, [
             'foto' => 'required',
         ]);
-
         $konten = KontenModel::find($id);
 
         // delete or replace file
         if (!empty($request->file('foto'))) {
             $file = $request->file('foto');
-            $file->move('/uploads', $konten->foto);
+            $file->move(public_path() . '/slider/', $konten->foto);
         } else {
             return redirect()->to('/admin/konten')->withErro('Foto kosong');
         }
@@ -92,7 +90,13 @@ class KontenController extends Controller
 
     public function destroy($id)
     {
-        $user = User::destroy($id);
+        // delete file foto
+        $konten = KontenModel::find($id);
+        if (file_exists(public_path() . '/slider/' . $konten->foto)) {
+            unlink(public_path() . '/slider/' . $konten->foto);
+        }
+
+        $konten = KontenModel::destroy($id);
         return redirect()->to('/admin/konten')->withSuccess('Data berhasil dihapus');
     }
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KontenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PublikController;
+use App\Http\Controllers\RunningController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +29,8 @@ Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth');
 Route::middleware('auth')->group(function () {
     Route::middleware('admin')->prefix('admin')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index']);
-        Route::prefix('jadwal')->group(function () {
         Route::get('/running', [AdminController::class, 'getRunningText']);
-        Route::prefix('jadwal')->group(function (){
+        Route::prefix('jadwal')->group(function () {
             // Route::get('/', [AdminController::class, 'getJadwal']);
             Route::get('/history', [AdminController::class, 'getHistory']);
             Route::get('/input', [AdminController::class, 'addJadwal']);
@@ -53,6 +53,15 @@ Route::middleware('auth')->group(function () {
             Route::get('/{id}/edit', [KontenController::class, 'edit']);
             Route::post('/{id}/edit', [KontenController::class, 'update']);
             Route::get('/{id}/hapus', [KontenController::class, 'destroy']);
+        });
+
+        Route::prefix('running')->group(function () {
+            Route::get('/', [RunningController::class, 'index']);
+            Route::get('/input', [RunningController::class, 'add']);
+            Route::post('/store', [RunningController::class, 'store']);
+            Route::get('/{id}/edit', [RunningController::class, 'edit']);
+            Route::post('/{id}/edit', [RunningController::class, 'update']);
+            Route::get('/{id}/hapus', [RunningController::class, 'destroy']);
         });
 
     });

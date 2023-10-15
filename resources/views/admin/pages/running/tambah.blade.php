@@ -20,7 +20,7 @@
                                 <ol class="breadcrumb mb-0 p-0">
                                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Input konten</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Input Running</li>
                                 </ol>
                             </nav>
                         </div>
@@ -40,14 +40,13 @@
                                             aria-label="Close"></button>
                                     </div>
                                 @endif
-                                <form action={{ '/admin/konten/' . $konten->id . '/edit' }} method="POST"
-                                    enctype="multipart/form-data">
+                                <form action={{ '/admin/running/store' }} method="POST">
                                     @csrf
-                                    <label for="foto" class="form-label">Konten</label>
-                                    <input name="foto" class="form-control mb-3" type="file"
-                                        placeholder="Masukkan Nama Rapat" aria-label="default input example"
-                                        aria-label="sdas" value="{{ $konten->foto }}" required>
-                                    @error('foto')
+                                    <label for="text" class="form-label">Text</label>
+                                    <input name="text" class="form-control mb-3" type="text"
+                                        placeholder="Masukkan Text" aria-label="default input example"
+                                        value="{{ old('text') }}" required>
+                                    @error('text')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>

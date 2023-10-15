@@ -23,35 +23,30 @@
                             {{-- <div class="position-relative">
 								<input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
 							</div> --}}
-                            <div class="ms-auto"><a href="/admin/user-management/input"
+                            <div class="ms-auto"><a href="/admin/running/input"
                                     class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Tambah
-                                    User</a></div>
+                                    running</a></div>
                         </div>
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <thead class="table-light">
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama</th>
-                                        <th>Username</th>
-                                        <th>Role</th>
-                                        <th>Action</th>
+                                        <th>Foto</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($user as $key => $value)
+                                    @forelse ($running as $key => $value)
                                         <tr>
                                             <td>{{ ++$key }}</td>
-                                            <td>{{ $value->name }}</td>
-                                            <td>{{ $value->username }}</td>
-                                            <td>{{ $value->role }}</td>
+                                            <td>{{ $value->text }}</td>
                                             <td>
                                                 <div class="d-flex order-actions">
                                                     <a class="btn btn-outline-primary"
-                                                        href="{{ url('/admin/user-management/' . $value->id . '/edit') }}"><i
+                                                        href="{{ url('/admin/running/' . $value->id . '/edit') }}"><i
                                                             class='bx bxs-edit'></i></a>
                                                     <a class="ms-3"
-                                                        href="{{ url('/admin/user-management/' . $value->id . '/hapus') }}"><i
+                                                        href="{{ url('/admin/running/' . $value->id . '/hapus') }}"><i
                                                             class='bx bxs-trash'></i></a>
                                                     </button>
                                                 </div>

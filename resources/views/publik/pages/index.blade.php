@@ -1,54 +1,55 @@
-<?php header('refresh:5;url=/flip');?>
+<?php header('refresh:5;url=/flip'); ?>
 
 {{-- @extends('publik.main')
 @session('content-publik') --}}
 
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--favicon-->
-	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
-	<!--plugins-->
-	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-	<link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
-	<!-- loader-->
-	{{-- <link href="assets/css/pace.min.css" rel="stylesheet" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--favicon-->
+    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+    <!--plugins-->
+    <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+    <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+    <!-- loader-->
+    {{-- <link href="assets/css/pace.min.css" rel="stylesheet" />
 	<script src="assets/js/pace.min.js"></script> --}}
-	<!-- Bootstrap CSS -->
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="assets/css/bootstrap-extended.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
-	<link href="assets/css/app.css" rel="stylesheet">
-	<link href="assets/css/icons.css" rel="stylesheet">
-	<!-- Theme Style CSS -->
-	<link rel="stylesheet" href="assets/css/dark-theme.css" />
-	<link rel="stylesheet" href="assets/css/semi-dark.css" />
-	<link rel="stylesheet" href="assets/css/header-colors.css" />
-	<title>SISJANI</title>
-	{{-- <title>SISJANI | {{ $title }}</title> --}}
+    <!-- Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-extended.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link href="assets/css/app.css" rel="stylesheet">
+    <link href="assets/css/icons.css" rel="stylesheet">
+    <!-- Theme Style CSS -->
+    <link rel="stylesheet" href="assets/css/dark-theme.css" />
+    <link rel="stylesheet" href="assets/css/semi-dark.css" />
+    <link rel="stylesheet" href="assets/css/header-colors.css" />
+    <title>SISJANI</title>
+    {{-- <title>SISJANI | {{ $title }}</title> --}}
 </head>
 
 <body>
-	<!--wrapper-->
-	<div class="wrapper">
-		<!--sidebar wrapper -->
-		<div class="sidebar-wrapper" data-simplebar="true">
-			<div class="sidebar-header">
-				<a href="/login" target="_blank" rel="noreferrer noopener"><img src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon-sidebar" alt="logo icon"></a>
-			</div>
-			<div class="metismenu" id="menu">
-				<h3 id="hari" class="display-6"></h3>
+    <!--wrapper-->
+    <div class="wrapper">
+        <!--sidebar wrapper -->
+        <div class="sidebar-wrapper" data-simplebar="true">
+            <div class="sidebar-header">
+                <a href="/login" target="_blank" rel="noreferrer noopener"><img
+                        src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon-sidebar" alt="logo icon"></a>
+            </div>
+            <div class="metismenu" id="menu">
+                <h3 id="hari" class="display-6"></h3>
                 <h3 id="tanggal" class="display-6"></h3>
                 <h3 id="jam" class="display-6"></h3>
-			</div>
-		</div>
-		<!--end sidebar wrapper -->
+            </div>
+        </div>
+        <!--end sidebar wrapper -->
 
-		<!--start page wrapper -->
-		<div class="page-wrapper">
-			<div class="page-content">
+        <!--start page wrapper -->
+        <div class="page-wrapper">
+            <div class="page-content">
                 <div class="table-responsive bg-white">
                     <table class="table mb-0" style="font-size:1.5rem">
                         <thead class="table-light">
@@ -63,16 +64,16 @@
                         </thead>
                         <tbody>
                             @forelse ($jadwal as $key => $value)
-                            <tr>
-                                <td>{{++$key}}</td>
-                                <td>{{$value->nama}}</td>
-                                <td>{{$value->ruangan}}</td>
-                                <td>{{$value->tgl_mulai->toTimeString()}}</td>
-                                <td>{{$value->tgl_selesai->toTimeString()}}</td>
-                                {{-- <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View Details</button></td> --}}
-                            <tr>
+                                <tr>
+                                    <td>{{ ++$key }}</td>
+                                    <td>{{ $value->nama }}</td>
+                                    <td>{{ $value->ruangan }}</td>
+                                    <td>{{ $value->tgl_mulai->toTimeString() }}</td>
+                                    <td>{{ $value->tgl_selesai->toTimeString() }}</td>
+                                    {{-- <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View Details</button></td> --}}
+                                <tr>
 
-                            </tr>
+                                </tr>
                             @empty
                                 <tr>
                                     <td colspan="7" class="text-center">Tidak ada data</td>
@@ -81,42 +82,52 @@
                         </tbody>
                     </table>
                 </div>
-			</div>
-		</div>
-		<!--end page wrapper -->
+            </div>
+        </div>
+        <!--end page wrapper -->
 
-		<footer class="marquee-footer">
-            @forelse ($text as $key => $value)
-			<marquee class="mb-0" scrollamount='9'>{{$value->text}}</marquee>
-            @empty
+        <footer class="marquee-footer">
+            <marquee class="mb-0" scrollamount='9'>
+                @forelse ($text as $key => $value)
+                    {{ $value->text }}
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                @empty
+                @endforelse
+            </marquee>
 
-            @endforelse
         </footer>
-	</div>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-	<!--plugins-->
-	<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-	<script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
-	<script src="{{ asset('assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
-	<script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
-	<!-- Vector map JavaScript -->
-	<script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
-	<script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-	<!-- highcharts js -->
-	<script src="{{ asset('assets/plugins/highcharts/js/highcharts.js') }}"></script>
-	<script src="{{ asset('assets/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
-	<script src="{{ asset('assets/js/index2.js') }}"></script>
-	<!--app JS-->
-	<script src="{{ asset('assets/js/app.js') }}"></script>
+    <!--plugins-->
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
+    <!-- Vector map JavaScript -->
+    <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+    <!-- highcharts js -->
+    <script src="{{ asset('assets/plugins/highcharts/js/highcharts.js') }}"></script>
+    <script src="{{ asset('assets/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/js/index2.js') }}"></script>
+    <!--app JS-->
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 
-	<script>
+    <script>
         function updateTime() {
             var now = new Date();
-            var hari = now.toLocaleDateString('id-ID', { weekday: 'long' });
-            var tanggal = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
-            var jam = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0') + ':' + now.getSeconds().toString().padStart(2, '0'); // Format jam secara manual menjadi HH:mm:ss
+            var hari = now.toLocaleDateString('id-ID', {
+                weekday: 'long'
+            });
+            var tanggal = now.toLocaleDateString('id-ID', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            var jam = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0') +
+                ':' + now.getSeconds().toString().padStart(2, '0'); // Format jam secara manual menjadi HH:mm:ss
 
             document.getElementById('hari').textContent = hari;
             document.getElementById('tanggal').textContent = tanggal;
