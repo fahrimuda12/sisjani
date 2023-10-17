@@ -91,7 +91,7 @@
 						</div>
 
 
-				<div class="card radius-10">
+				{{-- <div class="card radius-10">
 					<div class="card-body">
                         <form class="row g-3" action="/admin/jadwal/input" method="POST">
                             @csrf
@@ -124,7 +124,7 @@
                             </div>
                         </form>
 					</div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 		<!--end page wrapper -->
@@ -138,12 +138,12 @@
 		</footer>
 	</div>
 	<!--end wrapper-->
-	<script>
+	{{-- <script>
 		function onlyOne(checkbox) {
 			var checkboxes = document.getElementsByName('check')
 			checkboxes.forEach((item) => {
 				if (item !== checkbox) item.checked = false
 			})
 		}
-	</script>
+	</script> --}}
 @endsession

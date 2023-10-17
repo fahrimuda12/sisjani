@@ -1,4 +1,6 @@
-<?php header('refresh:30;url=/'); ?>
+{{-- @php
+header('refresh:30');
+@endphp --}}
 
 {{-- @extends('publik.main')
 @session('content-publik') --}}
@@ -28,21 +30,21 @@
     <link rel="stylesheet" href="assets/css/header-colors.css" />
     <title>SISJANI</title>
     {{-- <title>SISJANI | {{ $title }}</title> --}}
-    <style>
+    {{-- <style>
         .fadein {
             position: center;
             margin: 0 auto;
             background: #ebebeb;
-            /* padding: 10px; */
+            padding: 10px;
         }
 
         .fadein img {
             position: absolute;
-            /* width: calc(83%); */
-            /* height: calc(83%); */
-            /* object-fit: scale-down; */
+            width: calc(83%);
+            height: calc(83%);
+            object-fit: scale-down;
         }
-    </style>
+    </style> --}}
 </head>
 
 <!--wrapper-->
@@ -82,14 +84,13 @@
             </div>
         </div>
     </div> --}}
-    <div class="page-wrapper">
-        <div class="page-content">
+    <div class="flip-wrapper">
+        <div class="flip-content">
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @forelse ($konten as $key => $value)
                         <div class="{{ $key == 0 ? 'carousel-item active' : 'carousel-item' }}">
-                            <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100"
-                                alt="{{ $value->foto }}">
+                            <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100" alt="{{ $value->foto }}">
                         </div>
                     @empty
                         <div>
@@ -117,7 +118,7 @@
                                             <td>{{ $value->ruangan }}</td>
                                             <td>{{ $value->tgl_mulai->toTimeString() }}</td>
                                             <td>{{ $value->tgl_selesai->toTimeString() }}</td>
-                                            {{-- <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View Details</button></td> --}}
+                                            <td>@php echo ((strtotime(now()) < strtotime($value['tgl_mulai'])) ? ('Dijadwalkan') : ('Sedang Berlangsung')); @endphp></td>
                                         <tr>
 
                                         </tr>
@@ -150,7 +151,6 @@
         <marquee class="mb-0" scrollamount='9'>
             @forelse ($text as $key => $value)
                 {{ $value->text }}
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             @empty
             @endforelse
         </marquee>
@@ -197,7 +197,7 @@
     setInterval(updateTime, 1000); // Update setiap 1 detik (1000ms)
 </script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+{{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> --}}
 <script>
     $(function() {
         $('.fadein img:gt(0)').hide();
@@ -209,7 +209,7 @@
         setInterval(function() {
             $('.fadein .page-wrapper').show().next('.fadein .page-wrapper').hide();
 
-        }, 3000 * {{ $konten }});
+        }, 1000 * {{ $konten }});
 
     });
 </script>

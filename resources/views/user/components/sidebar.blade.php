@@ -18,9 +18,9 @@
                 <div class="menu-title">Dashboard</div>
             </a>
             <ul>
-                <li> <a href="/admin/dashboard"><i class='bx bx-radio-circle'></i>Jadwal Rapat</a>
+                <li> <a href="/dashboard"><i class='bx bx-radio-circle'></i>Jadwal Rapat</a>
                 </li>
-                <li> <a href="/admin/jadwal/history"><i class='bx bx-radio-circle'></i>History Rapat</a>
+                <li> <a href="/jadwal/history"><i class='bx bx-radio-circle'></i>History Rapat</a>
                 </li>
             </ul>
         </li>

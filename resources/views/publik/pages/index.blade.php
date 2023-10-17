@@ -1,4 +1,6 @@
-<?php header('refresh:5;url=/flip'); ?>
+@php
+header('refresh:5;url=/');
+@endphp
 
 {{-- @extends('publik.main')
 @session('content-publik') --}}
@@ -39,17 +41,18 @@
                 <a href="/login" target="_blank" rel="noreferrer noopener"><img
                         src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon-sidebar" alt="logo icon"></a>
             </div>
-            <div class="metismenu" id="menu">
-                <h3 id="hari" class="display-6"></h3>
-                <h3 id="tanggal" class="display-6"></h3>
-                <h3 id="jam" class="display-6"></h3>
+            <div class="metismenu" id="menu" style="background-color:#2ea0e2;text-align: center;">
+                <h3 id="hari" class="display-6" style="color:white;"></h3>
+                <h3 id="tanggal" class="display-6" style="color:white;"></h3>
+                <h3 id="jam" class="display-6" style="color:white"></h3>
             </div>
+            <img src="{{ asset('assets/images/side.jpg') }}" width=100% height=70% />
         </div>
         <!--end sidebar wrapper -->
 
         <!--start page wrapper -->
-        <div class="page-wrapper">
-            <div class="page-content">
+        <div class="flip-wrapper">
+            <div class="flip-content">
                 <div class="table-responsive bg-white">
                     <table class="table mb-0" style="font-size:1.5rem">
                         <thead class="table-light">
@@ -68,15 +71,15 @@
                                     <td>{{ ++$key }}</td>
                                     <td>{{ $value->nama }}</td>
                                     <td>{{ $value->ruangan }}</td>
-                                    <td>{{ $value->tgl_mulai->toTimeString() }}</td>
-                                    <td>{{ $value->tgl_selesai->toTimeString() }}</td>
-                                    {{-- <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View Details</button></td> --}}
+                                    <td>{{ $value->tgl_mulai->format('H:i') }}</td>
+                                    <td>{{ $value->tgl_selesai->format('H:i') }}</td>
+                                    <td>@php echo ((strtotime(now()) < strtotime($value['tgl_mulai'])) ? ('Dijadwalkan') : ('Sedang Berlangsung')); @endphp</td>
                                 <tr>
 
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="text-center">Tidak ada data</td>
+                                    <td colspan="6" class="text-center">Tidak ada data</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -89,8 +92,7 @@
         <footer class="marquee-footer">
             <marquee class="mb-0" scrollamount='9'>
                 @forelse ($text as $key => $value)
-                    {{ $value->text }}
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        {{ $value->text }}
                 @empty
                 @endforelse
             </marquee>
@@ -102,18 +104,18 @@
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <!--plugins-->
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
+    {{-- <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/plugins/metismenu/js/metisMenu.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script> --}}
     <!-- Vector map JavaScript -->
     <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
     <!-- highcharts js -->
-    <script src="{{ asset('assets/plugins/highcharts/js/highcharts.js') }}"></script>
-    <script src="{{ asset('assets/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('assets/js/index2.js') }}"></script>
+    {{-- <script src="{{ asset('assets/plugins/highcharts/js/highcharts.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/index2.js') }}"></script> --}}
     <!--app JS-->
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/app.js') }}"></script> --}}
 
     <script>
         function updateTime() {
@@ -123,7 +125,7 @@
             });
             var tanggal = now.toLocaleDateString('id-ID', {
                 day: 'numeric',
-                month: 'long',
+                month: 'short',
                 year: 'numeric'
             });
             var jam = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0') +

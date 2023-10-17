@@ -5,6 +5,7 @@ use App\Http\Controllers\KontenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PublikController;
 use App\Http\Controllers\RunningController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
@@ -67,5 +68,12 @@ Route::middleware('auth')->group(function () {
     });
 
     // user
-    Route::get('/dashboard', [AdminController::class, 'index']);
+    Route::get('/dashboard', [UserController::class, 'index']);
+        Route::get('/running', [UserController::class, 'getRunningText']);
+        Route::prefix('jadwal')->group(function () {
+            // Route::get('/', [UserController::class, 'getJadwal']);
+            Route::get('/history', [UserController::class, 'getHistory']);
+            Route::get('/input', [UserController::class, 'addJadwal']);
+            Route::post('/input', [UserController::class, 'saveJadwal']);
+        });
 });
