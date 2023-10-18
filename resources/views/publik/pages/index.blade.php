@@ -1,9 +1,10 @@
-@php
+{{-- @php
 header('refresh:5;url=/');
-@endphp
+@endphp --}}
 
 {{-- @extends('publik.main')
 @session('content-publik') --}}
+
 
 <head>
     <!-- Required meta tags -->

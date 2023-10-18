@@ -55,11 +55,12 @@ header('refresh:30');
             <a href="/login" target="_blank" rel="noreferrer noopener"><img
                     src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon-sidebar" alt="logo icon"></a>
         </div>
-        <div class="metismenu" id="menu">
-            <h3 id="hari" class="display-6"></h3>
-            <h3 id="tanggal" class="display-6"></h3>
-            <h3 id="jam" class="display-6"></h3>
+        <div class="metismenu" id="menu" style="background-color:#2ea0e2;text-align: center;">
+            <h3 id="hari" class="display-6" style="color:white;"></h3>
+            <h3 id="tanggal" class="display-6" style="color:white;"></h3>
+            <h3 id="jam" class="display-6" style="color:white"></h3>
         </div>
+        <img src="{{ asset('assets/images/side.jpg') }}" width=100% height=70% />
     </div>
     <!--end sidebar wrapper -->
 
@@ -118,7 +119,7 @@ header('refresh:30');
                                             <td>{{ $value->ruangan }}</td>
                                             <td>{{ $value->tgl_mulai->toTimeString() }}</td>
                                             <td>{{ $value->tgl_selesai->toTimeString() }}</td>
-                                            <td>@php echo ((strtotime(now()) < strtotime($value['tgl_mulai'])) ? ('Dijadwalkan') : ('Sedang Berlangsung')); @endphp></td>
+                                            <td>@php echo ((strtotime(now()) < strtotime($value['tgl_mulai'])) ? ('Dijadwalkan') : ('Sedang Berlangsung')); @endphp</td>
                                         <tr>
 
                                         </tr>
