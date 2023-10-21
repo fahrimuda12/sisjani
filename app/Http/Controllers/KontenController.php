@@ -10,7 +10,6 @@ class KontenController extends Controller
 {
     public function index()
     {
-        //$jadwal = JadwalModel::all();
         $konten = KontenModel::all();
         return view('admin.pages.konten.index', [
             'title' => 'Dashboard',
@@ -20,7 +19,6 @@ class KontenController extends Controller
 
     public function add()
     {
-        //$jadwal = JadwalModel::all();
         return view('admin.pages.konten.tambah', [
             'title' => 'Dashboard',
         ]);
@@ -47,16 +45,6 @@ class KontenController extends Controller
 
         return redirect()->to('/admin/konten')->withSuccess('Data berhasil ditambahkan');
     }
-
-    // public function getJadwal()
-    // {
-    //     //$jadwal = JadwalModel::all();
-    //     $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
-    //     return view('admin.pages.dashboard', [
-    //         'title' => 'Jadwal',
-    //         'jadwal' => $jadwal
-    //     ]);
-    // }
 
     public function edit($id)
     {

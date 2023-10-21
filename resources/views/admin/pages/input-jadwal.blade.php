@@ -43,6 +43,14 @@
 						<hr/> --}}
 						<div class="card">
 							<div class="card-body">
+								{{-- get response --}}
+								@if (session('error'))
+								<div class="alert alert-danger alert-dismissible fade show" role="alert">
+									<strong>{{ session('error') }}</strong>
+									<button type="button" class="btn-close" data-bs-dismiss="alert"
+										aria-label="Close"></button>
+								</div>
+								@endif
 								<form action="/admin/jadwal/input" method="POST">
 									@csrf
 									<label for="nama" class="form-label">Nama Rapat</label>
@@ -86,8 +94,8 @@
 										<button type="submit" class="btn btn-primary px-4">Submit</button>
 										<button type="reset" class="btn btn-light px-4">Reset</button>
 									</div>
-								</div>
-							</form>
+								</form>
+							</div>
 						</div>
 
 

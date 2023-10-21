@@ -12,6 +12,7 @@ class PublikController extends Controller
     public function index()
     {
         $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
+        // $jadwal = JadwalModel::where('tgl_mulai', '=', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
         $text = RunningTextModel::all();
 
         // $wkt_mulai = $jadwal[3];

@@ -42,9 +42,9 @@
                                 @endif
                                 <form action={{ '/admin/user-management/store' }} method="POST">
                                     @csrf
-                                    <label for="nama" class="form-label">Nama Rapat</label>
+                                    <label for="nama" class="form-label">Nama</label>
                                     <input name="nama" class="form-control mb-3" type="text"
-                                        placeholder="Masukkan Nama Rapat" aria-label="default input example"
+                                        placeholder="Masukkan Nama" aria-label="default input example"
                                         value="{{ old('nama') }}" required>
                                     @error('nama')
                                         <div class="invalid-feedback">
@@ -53,7 +53,7 @@
                                     @enderror
                                     <label for="username" class="form-label">Username</label>
                                     <input name="username" class="form-control mb-3" type="text"
-                                        placeholder="Masukkan Nama Username" aria-label="default input example"
+                                        placeholder="Masukkan Username" aria-label="default input example"
                                         value="{{ old('username') }}" required>
                                     @error('username')
                                         <div class="invalid-feedback">
@@ -61,8 +61,7 @@
                                         </div>
                                     @enderror
                                     <label for="role" class="form-label">Role</label>
-                                    <select name="role" class="form-select mb-3" aria-label="Pilih Ruangan Rapat"
-                                        required>
+                                    <select name="role" class="form-select mb-3" aria-label="Pilih Role" required>
                                         <option value="admin">Admin</option>
                                         <option value="user">User</option>
                                     </select>
@@ -73,7 +72,7 @@
                                     @enderror
                                     <label for="password" class="form-label">Passowrd</label>
                                     <input name="password" class="form-control mb-3" type="password"
-                                        placeholder="Masukkan Nama Rapat" aria-label="default input example">
+                                        placeholder="Masukkan Password " aria-label="default input example">
                                     @error('password')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -81,7 +80,7 @@
                                     @enderror
                                     <label for="password_konfirmasi" class="form-label">Password Konfirmasi</label>
                                     <input name="password_konfirmasi" class="form-control mb-3" type="password"
-                                        placeholder="Masukkan Nama Rapat" aria-label="default input example">
+                                        placeholder="Masukkan Ulang Password" aria-label="default input example">
                                     @error('password_konfirmasi')
                                         <div class="invalid-feedback">
                                             {{ $message }}

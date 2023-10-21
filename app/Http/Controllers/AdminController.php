@@ -11,7 +11,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-        //$jadwal = JadwalModel::all();
         $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
         return view('admin.pages.dashboard', [
             'title' => 'Dashboard',
@@ -19,15 +18,15 @@ class AdminController extends Controller
         ]);
     }
 
-    // public function getJadwal()
-    // {
-    //     //$jadwal = JadwalModel::all();
-    //     $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
-    //     return view('admin.pages.dashboard', [
-    //         'title' => 'Jadwal',
-    //         'jadwal' => $jadwal
-    //     ]);
-    // }
+    public function getJadwal()
+    {
+        //$jadwal = JadwalModel::all();
+        $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
+        return view('admin.pages.dashboard', [
+            'title' => 'Jadwal',
+            'jadwal' => $jadwal
+        ]);
+    }
 
     public function getHistory()
     {
@@ -59,14 +58,32 @@ class AdminController extends Controller
         $request->validate([
             'nama' => 'required',
             'ruangan' => 'required',
-            'tgl_mulai' => 'required',
-            'tgl_selesai' => 'required',
+            'tgl_mulai' => 'required|after:now',
+            'tgl_selesai' => 'required|after:tgl_mulai',
             'snack' => 'required',
             'status' => 'required',
-            // 'created_at' => 'required',
-
         ]);
 
+        // Validasi apakah ada jadwal yang bertabrakan dalam ruangan yang sama
+        $existingMeeting = JadwalModel::where('ruangan', $request->ruangan)
+            ->where(function ($query) use ($request) {
+                $query->whereBetween('tgl_mulai', [$request->tgl_mulai, $request->tgl_selesai])
+                    ->orWhereBetween('tgl_selesai', [$request->tgl_mulai, $request->tgl_selesai])
+                    ->orWhere(function ($q) use ($request) {
+                        $q->where('tgl_mulai', '<', $request->tgl_mulai)
+                            ->where('tgl_selesai', '>', $request->tgl_selesai);
+                    });
+            })
+            ->first();
+
+        if ($existingMeeting) {
+            $conflictingMeeting = $existingMeeting->nama;
+            $conflictingRoom = $existingMeeting->ruangan;
+            $conflictingSchedule = "mulai " . $existingMeeting->tgl_mulai . " hingga " . $existingMeeting->tgl_selesai;
+
+            return redirect('/admin/jadwal/input')->with('error', "Ruangan '$conflictingRoom' sudah digunakan pada '$conflictingMeeting' $conflictingSchedule");
+        }
+        
         JadwalModel::create([
             'nama' => $request->nama,
             'ruangan' => $request->ruangan,

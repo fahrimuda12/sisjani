@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index']);
         Route::get('/running', [AdminController::class, 'getRunningText']);
         Route::prefix('jadwal')->group(function () {
-            // Route::get('/', [AdminController::class, 'getJadwal']);
+            Route::get('/', [AdminController::class, 'getJadwal']);
             Route::get('/history', [AdminController::class, 'getHistory']);
             Route::get('/input', [AdminController::class, 'addJadwal']);
             Route::post('/input', [AdminController::class, 'saveJadwal']);
