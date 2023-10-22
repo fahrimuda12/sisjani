@@ -1,5 +1,5 @@
 @extends('admin.main')
-@session('content')
+@section('content')
     <!--wrapper-->
     <div class="wrapper">
         <!--sidebar wrapper -->
@@ -261,4 +261,4 @@
             </div>
         </div>
     </div>
-@endsession
+@endsection

@@ -65,40 +65,11 @@ header('refresh:30');
     <!--end sidebar wrapper -->
 
     <!--start page wrapper -->
-    {{-- <div class="flip-wrapper">
-        <div class="flip-content">
-            <div class="fadein">
-                <?php
-                // display images from directory
-                // directory path
-                $dir = "./slider/";
-                $scan_dir = scandir($dir);
-                shuffle($scan_dir);
-                foreach($scan_dir as $img):
-                    if(in_array($img,array('.','..')))
-                    continue;
-                ?>
-                <img src="<?php echo $dir . $img; ?>" alt="<?php echo $img; ?>">
-
-                <?php endforeach; ?>
-
-            </div>
-        </div>
-    </div> --}}
     <div class="flip-wrapper">
         <div class="flip-content">
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    @forelse ($konten as $key => $value)
-                        <div class="{{ $key == 0 ? 'carousel-item active' : 'carousel-item' }}">
-                            <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100" alt="{{ $value->foto }}">
-                        </div>
-                    @empty
-                        <div>
-
-                        </div>
-                    @endforelse
-                    <div class="carousel-item">
+                    <div class="carousel-item active">
                         <div class="table-responsive bg-white">
                             <table class="table mb-0" style="font-size:1.5rem">
                                 <thead class="table-light">
@@ -132,6 +103,16 @@ header('refresh:30');
                             </table>
                         </div>
                     </div>
+                    @forelse ($konten as $key => $value)
+                        <div class="{{ $key == 0 ? 'carousel-item' : 'carousel-item' }}">
+                            <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100"
+                                alt="{{ $value->foto }}">
+                        </div>
+                    @empty
+                        <div>
+
+                        </div>
+                    @endforelse
                 </div>
                 {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                     data-bs-slide="prev">
@@ -149,9 +130,9 @@ header('refresh:30');
     <!--end page wrapper -->
 
     @forelse ($text as $key => $value)
-    <footer class="marquee-footer">
-        <marquee class="mb-0" scrollamount='9'>{{ $value->text }}</marquee>
-    </footer>
+        <footer class="marquee-footer">
+            <marquee class="mb-0" scrollamount='9'>{{ $value->text }}</marquee>
+        </footer>
     @empty
     @endforelse
 
