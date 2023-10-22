@@ -1,10 +1,8 @@
 {{-- @extends('layouts.main') --}}
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from codervent.com/syndron/demo/vertical/auth-cover-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 29 Jul 2023 03:58:38 GMT -->
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -86,28 +84,27 @@
 													<input type="password" class="form-control border-end-0" id="inputChoosePassword" value="" placeholder="Masukkan Password" name="password" required> <a href="javascript:;" class="input-group-text bg-transparent"><i class="bx bx-hide"></i></a>
 												</div>
 											</div>
-											<!-- <div class="col-md-6">
+											{{-- <div class="col-md-6">
 												<div class="form-check form-switch">
 													<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
 													<label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
 												</div>
 											</div>
-											<div class="col-md-6 text-end">	<a href="auth-cover-forgot-password.html">Forgot Password ?</a>
-											</div> -->
+											<div class="col-md-6 text-end">	<a href="auth-cover-forgot-password.html">Forgot Password ?</a></div> --}}
 											<div class="col-12">
 												<div class="d-grid">
 													<button type="submit" class="btn btn-primary">Masuk</button>
 												</div>
 											</div>
-											<!-- <div class="col-12">
+											{{-- <div class="col-12">
 												<div class="text-center">
 													<p class="mb-0">Don't have an account yet? <a href="auth-cover-signup.html">Sign up here</a>
 													</p>
 												</div>
-											</div> -->
+											</div> --}}
 										</form>
 									</div>
-									<!-- <div class="login-separater text-center mb-5"> <span>OR SIGN IN WITH</span>
+									{{-- <div class="login-separater text-center mb-5"> <span>OR SIGN IN WITH</span>
 										<hr>
 									</div>
 									<div class="list-inline contacts-social text-center">
@@ -115,7 +112,7 @@
 										<a href="javascript:;" class="list-inline-item bg-twitter text-white border-0 rounded-3"><i class="bx bxl-twitter"></i></a>
 										<a href="javascript:;" class="list-inline-item bg-google text-white border-0 rounded-3"><i class="bx bxl-google"></i></a>
 										<a href="javascript:;" class="list-inline-item bg-linkedin text-white border-0 rounded-3"><i class="bx bxl-linkedin"></i></a>
-									</div> -->
+									</div> --}}
 
 								</div>
 							</div>
@@ -155,7 +152,4 @@
 	<!--app JS-->
 	<script src="assets/js/app.js"></script>
 </body>
-
-
-<!-- Mirrored from codervent.com/syndron/demo/vertical/auth-cover-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 29 Jul 2023 03:58:38 GMT -->
 </html>

@@ -62,6 +62,7 @@
                                     @enderror
                                     <label for="role" class="form-label">Role</label>
                                     <select name="role" class="form-select mb-3" aria-label="Pilih Role" required>
+                                        <option value="" disabled selected hidden>Pilih Role</option>
                                         <option value="admin">Admin</option>
                                         <option value="user">User</option>
                                     </select>

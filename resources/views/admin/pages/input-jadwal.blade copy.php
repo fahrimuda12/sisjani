@@ -10,7 +10,7 @@
 		<!--end header -->
 		<!--start page wrapper -->
 		<div class="page-wrapper">
-			<div class="page-content p-0">
+			<div class="page-content">
 				<div class="col-xl-9 mx-auto"> <!--full/tidak-->
                 <!--breadcrumb-->
 				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -51,11 +51,11 @@
 										aria-label="Close"></button>
 								</div>
 								@endif
-								<form class="row g-2" action="/admin/jadwal/input" method="POST">
+								<form action="/admin/jadwal/input" method="POST">
 									@csrf
-									<label class="form-label">Nama Rapat</label>
+									<label for="nama" class="form-label">Nama Rapat</label>
 									<input name="nama" class="form-control mb-3" type="text" placeholder="Masukkan Nama Rapat" aria-label="default input example" required>
-									<label class="form-label">Ruang Rapat</label>
+									<label for="ruangan" class="form-label">Ruang Rapat</label>
 									<select name="ruangan" class="form-select mb-3" aria-label="Pilih Ruangan Rapat" required>
 										<option value="" disabled selected hidden>Pilih Ruangan</option>
 										<option value="R.Bromo">R.Bromo</option>
@@ -66,30 +66,20 @@
 										<option value="R.Kelas Kelud">R.Kelas Kelud</option> 
 										<option value="R.Procurement GSG Lt.II">R.Procurement GSG Lt.II</option>
 									</select>
-									<label class="form-label">Tanggal</label>
-									<input name="tgl_mulai" class="form-control mb-3" type="date" class="form-control" required>
-									<div class="col-md-6">
-										<label class="form-label">Jam Mulai</label>
-										<input name="tgl_mulai" class="form-control mb-3" type="time" class="form-control" required>
+									<label for="tgl_mulai" class="form-label">Tanggal Mulai</label>
+									<input name="tgl_mulai" class="form-control mb-3" type="datetime-local" class="form-control" required>
+									<label for="tgl_selesai" class="form-label">Tanggal Selesai</label>
+									<input name="tgl_selesai" class="form-control mb-3" type="datetime-local" class="form-control" required>
+									<label for="snack" class="form-label">Jumlah Snack</label>
+									<div class="input-group mb-3">
+										<input name="snack" type="number" max="1000" class="form-control" placeholder="Masukkan Jumlah Snack" aria-label="snack" aria-describedby="snack"> <span class="input-group-text" id="snack" required>Pax</span>
 									</div>
-									<div class="col-md-6">
-										<label class="form-label">Jam Selesai</label>
-										<input name="tgl_selesai" class="form-control mb-3" type="time" class="form-control" required>
-									</div>
-									<div class="col-md-6">
-										<label class="form-label">Jumlah Snack</label>
-										<div class="input-group mb-3">
-											<input name="snack" type="number" max="1000" class="form-control" placeholder="Masukkan Jumlah Snack" aria-label="snack" aria-describedby="snack"> <span class="input-group-text" id="snack" required>Pax</span>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<label class="form-label">Status Rapat</label>
-										<select name="status" class="form-select mb-3" aria-label="Pilih Status Rapat" required>
-											<option value="" disabled selected hidden>Pilih Status Rapat</option>
-											<option value="Internal">Internal</option>
-											<option value="Eksternal">Eksternal</option>
-										</select>
-									</div>
+									<label for="status" class="form-label">Status Rapat</label>
+									<select name="status" class="form-select mb-3" aria-label="Pilih Status Rapat" required>
+										<option value="" disabled selected hidden>Pilih Status Rapat</option>
+										<option value="Internal">Internal</option>
+										<option value="Eksternal">Eksternal</option>
+									</select>
 									{{-- <div class="form-check">
 									<input class="form-check-input" type="checkbox" value="Internal" id="flexCheckIndeterminate" onclick="onlyOne(this)">
 									<label class="form-check-label" for="flexCheckIndeterminate">Internal</label>

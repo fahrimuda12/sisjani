@@ -61,8 +61,8 @@
 										<th>No</th>
 										<th>Nama</th>
 										<th>Ruangan</th>
-										<th>Tanggal Mulai</th>
-										<th>Tanggal Selesai</th>
+										<th>Mulai</th>
+										<th>Selesai</th>
                                         <th>Snack</th>
 										<th>Status</th>
                                         <th>Action</th>
@@ -74,8 +74,8 @@
 										<td>{{++$key}}</td>
 										<td>{{$value->nama}}</td>
 										<td>{{$value->ruangan}}</td>
-										<td>{{$value->tgl_mulai}}</td>
-										<td>{{$value->tgl_selesai}}</td>
+										<td>{{$value->tgl_mulai->format('H:i')}}</td>
+										<td>{{$value->tgl_selesai->format('H:i')}}</td>
                                         {{-- <td>{{$value->waktu_selesai}}</td> --}}
 										<td>{{$value->snack}}</td>
 										<td>{{$value->status}}</td>
@@ -92,7 +92,7 @@
 									</tr>
 									@empty
 										<tr>
-											<td colspan="7" class="text-center">Tidak ada data</td>
+											<td colspan="8" class="text-center">Tidak ada data</td>
 										</tr>
 									@endforelse
 								</tbody>

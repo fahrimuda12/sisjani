@@ -148,7 +148,14 @@ header('refresh:30');
     </div>
     <!--end page wrapper -->
 
+    @forelse ($text as $key => $value)
     <footer class="marquee-footer">
+        <marquee class="mb-0" scrollamount='9'>{{ $value->text }}</marquee>
+    </footer>
+    @empty
+    @endforelse
+
+    {{-- <footer class="marquee-footer">
         <marquee class="mb-0" scrollamount='9'>
             @forelse ($text as $key => $value)
                 {{ $value->text }}
@@ -156,7 +163,7 @@ header('refresh:30');
             @endforelse
         </marquee>
 
-    </footer>
+    </footer> --}}
 </div>
 <!-- Bootstrap JS -->
 <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
@@ -166,12 +173,12 @@ header('refresh:30');
 <script src="{{ asset('assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
 <!-- Vector map JavaScript -->
-<script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script> --}}
 <!-- highcharts js -->
-<script src="{{ asset('assets/plugins/highcharts/js/highcharts.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/highcharts/js/highcharts.js') }}"></script>
 <script src="{{ asset('assets/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
-<script src="{{ asset('assets/js/index2.js') }}"></script>
+<script src="{{ asset('assets/js/index2.js') }}"></script> --}}
 <!--app JS-->
 <script src="{{ asset('assets/js/app.js') }}"></script>
 
