@@ -71,7 +71,7 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                    <label for="password" class="form-label">Passowrd</label>
+                                    <label for="password" class="form-label">Password</label>
                                     <input name="password" class="form-control mb-3" type="password"
                                         placeholder="Masukkan Password " aria-label="default input example">
                                     @error('password')
@@ -79,7 +79,7 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                    <label for="password_konfirmasi" class="form-label">Password Konfirmasi</label>
+                                    <label for="password_konfirmasi" class="form-label">Konfirmasi Password</label>
                                     <input name="password_konfirmasi" class="form-control mb-3" type="password"
                                         placeholder="Masukkan Ulang Password" aria-label="default input example">
                                     @error('password_konfirmasi')

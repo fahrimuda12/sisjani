@@ -55,13 +55,20 @@
 										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									</div>
 								@endif
-								<form action="/admin/jadwal/input" method="POST">
+								<form action={{ '/admin/jadwal/' . $jadwal->id . '/edit' }} method="POST"
+                                    enctype="multipart/form-data">
 									@csrf
 									<label class="form-label">Nama Rapat</label>
-									<input name="nama" class="form-control mb-3" type="text" placeholder="Masukkan Nama Rapat" aria-label="default input example" required>
+									<input name="nama" class="form-control mb-3" type="text" placeholder="Masukkan Nama Rapat" aria-label="default input example"
+									value="{{ $jadwal->nama }}" required>
+									@error('nama')
+                                        <div class="invalid-feedback">
+                                            {{ nama }}
+                                        </div>
+                                    @enderror
 									<label class="form-label">Ruang Rapat</label>
 									<select name="ruangan" class="form-select mb-3" aria-label="Pilih Ruangan Rapat" required>
-										<option value="" disabled selected hidden>Pilih Ruangan</option>
+										<option value="{{ $jadwal->ruangan }}" selected hidden>{{ $jadwal->ruangan }}</option>
 										<option value="R.Bromo">R.Bromo</option>
 										<option value="R.EOC">R.EOC</option>
 										<option value="R.Lawu">R.Lawu</option>
@@ -71,20 +78,19 @@
 										<option value="R.Procurement GSG Lt.II">R.Procurement GSG Lt.II</option>
 									</select>
 									<label class="form-label">Tanggal Mulai</label>
-									<input name="tgl_mulai" class="form-control mb-3" type="datetime-local" class="form-control" required>
+									<input name="tgl_mulai" class="form-control mb-3" type="datetime-local" class="form-control" value="{{ $jadwal->tgl_mulai }}" required>
 									<label class="form-label">Tanggal Selesai</label>
-									<input name="tgl_selesai" class="form-control mb-3" type="datetime-local" class="form-control" required>
+									<input name="tgl_selesai" class="form-control mb-3" type="datetime-local" class="form-control" value="{{ $jadwal->tgl_selesai }}" required>
 									<label class="form-label">Jumlah Snack</label>
 									<div class="input-group mb-3">
-										<input name="snack" type="number" max="1000" class="form-control" placeholder="Masukkan Jumlah Snack" aria-label="snack" aria-describedby="snack"> <span class="input-group-text" id="snack" required>Pax</span>
+										<input name="snack" type="number" max="1000" class="form-control" placeholder="Masukkan Jumlah Snack" aria-label="snack" aria-describedby="snack" value="{{ $jadwal->snack }}"> <span class="input-group-text" id="snack" required>Pax</span>
 									</div>
 									<label class="form-label">Status Rapat</label>
 									<select name="status" class="form-select mb-3" aria-label="Pilih Status Rapat" required>
-										<option value="" disabled selected hidden>Pilih Status Rapat</option>
+										<option value="{{ $jadwal->status }}" selected hidden>{{ $jadwal->status }}</option>
 										<option value="Internal">Internal</option>
 										<option value="Eksternal">Eksternal</option>
 									</select>
-									<input name="submitted_by" class="form-control mb-3" type="text" class="form-control" value="{{ Auth::user()->name }}" hidden>
 									{{-- <div class="form-check">
 									<input class="form-check-input" type="checkbox" value="Internal" id="flexCheckIndeterminate" onclick="onlyOne(this)">
 									<label class="form-check-label" for="flexCheckIndeterminate">Internal</label>

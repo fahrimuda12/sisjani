@@ -1,16 +1,17 @@
-@extends('admin.main')
+@extends('user.main')
 @section('content')
     <!--wrapper-->
 	<div class="wrapper">
 		<!--sidebar wrapper -->
-		@include('admin.components.sidebar')
+		@include('user.components.sidebar')
 		<!--end sidebar wrapper -->
 		<!--start header -->
-		@include('admin.components.header')
+		@include('user.components.header')
 		<!--end header -->
 		<!--start page wrapper -->
 		<div class="page-wrapper">
-			<div class="page-content"><!--breadcrumb-->
+			<div class="page-content">
+				<!--breadcrumb-->
 				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 					<div class="breadcrumb-title pe-3">Dashboard</div>
 					<div class="ps-3">

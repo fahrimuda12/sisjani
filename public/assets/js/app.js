@@ -2,7 +2,7 @@ $(function () {
     "use strict";
     // new PerfectScrollbar(".app-containergit"),
     // new PerfectScrollbar(".header-message-list"),
-    new PerfectScrollbar(".header-notifications-list"),
+    // new PerfectScrollbar(".header-notifications-list"),
         $(".mobile-search-icon").on("click", function () {
             $(".search-bar").addClass("full-search-bar");
         }),

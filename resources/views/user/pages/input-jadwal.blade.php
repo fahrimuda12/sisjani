@@ -1,12 +1,12 @@
-@extends('admin.main')
+@extends('user.main')
 @session('content')
     <!--wrapper-->
 	<div class="wrapper">
 		<!--sidebar wrapper -->
-		@include('admin.components.sidebar')
+		@include('user.components.sidebar')
 		<!--end sidebar wrapper -->
 		<!--start header -->
-		@include('admin.components.header')
+		@include('user.components.header')
 		<!--end header -->
 		<!--start page wrapper -->
 		<div class="page-wrapper">
@@ -55,7 +55,7 @@
 										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									</div>
 								@endif
-								<form action="/admin/jadwal/input" method="POST">
+								<form action="/jadwal/input" method="POST">
 									@csrf
 									<label class="form-label">Nama Rapat</label>
 									<input name="nama" class="form-control mb-3" type="text" placeholder="Masukkan Nama Rapat" aria-label="default input example" required>
@@ -102,44 +102,9 @@
 								</form>
 							</div>
 						</div>
-
-
-				{{-- <div class="card radius-10">
-					<div class="card-body">
-                        <form class="row g-3" action="/admin/jadwal/input" method="POST">
-                            @csrf
-                            <div class="col-md-12">
-                                <label for="input1" class="form-label">Nama</label>
-                                <input type="text" name="nama" class="form-control" id="input1" placeholder="First Name">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="ruangan" class="form-label">Ruangan</label>
-                                <select class="form-select" name="ruangan" id="ruangan" aria-label="Default select example">
-                                    <option selected>Ruangan</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                  </select>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="input6" class="form-label">Tanggal Mulai</label>
-                                <input type="datetime-local" name="tanggal_mulai" class="form-control" id="input6" placeholder="Date of Birth">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="input6" class="form-label">Tanggal Selesai</label>
-                                <input type="datetime-local" name="tanggal_selesai" class="form-control" id="input6" placeholder="Date of Birth">
-                            </div>
-                            <div class="col-md-12">
-                                <div class="d-md-flex d-grid align-items-center gap-3">
-                                    <button type="submit" class="btn btn-primary px-4">Submit</button>
-                                    <button type="reset" class="btn btn-light px-4">Reset</button>
-                                </div>
-                            </div>
-                        </form>
 					</div>
-				</div> --}}
+				</div>
 			</div>
-		</div>
 		<!--end page wrapper -->
 		<!--start overlay-->
 		<div class="overlay toggle-icon"></div>

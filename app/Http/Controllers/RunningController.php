@@ -62,18 +62,9 @@ class RunningController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'foto' => 'required',
+            'running' => 'required',
         ]);
         $running = RunningTextModel::find($id);
-
-        // delete or replace file
-        if (!empty($request->file('foto'))) {
-            $file = $request->file('foto');
-            $file->move(public_path() . '/slider/', $running->foto);
-        } else {
-            return redirect()->to('/admin/running')->withErro('Foto kosong');
-        }
-
         $running->updated_at = Carbon::now();
         $running->save();
 

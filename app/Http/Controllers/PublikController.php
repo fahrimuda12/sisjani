@@ -11,24 +11,27 @@ class PublikController extends Controller
 {
     public function index()
     {
-        $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
-        // $jadwal = JadwalModel::where('tgl_mulai', '=', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
+        $today = Carbon::now();
+        $jadwal = JadwalModel::whereDate('tgl_mulai', '<=', $today) // Hanya menampilkan jadwal yang dimulai sebelum atau pada hari ini
+        ->whereDate('tgl_selesai', '>=', $today) // dan berakhir setelah atau pada hari ini
+        ->orderBy('tgl_selesai', 'ASC')
+        ->get();
+        // $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
         $text = RunningTextModel::all();
-
-        // $wkt_mulai = $jadwal[3];
-        // $wkt_selesai = $jadwal[4];
         return view('publik.pages.index', [
-            'title' => 'Jadwal',
+            'title' => 'Index',
             'jadwal' => $jadwal,
-            // 'wkt_mulai' => $wkt_mulai,
-            // 'wkt_selesai' => $wkt_selesai,
             'text' => $text,
         ]);
     }
 
     public function flip()
     {
-        $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
+        $today = Carbon::now();
+        $jadwal = JadwalModel::whereDate('tgl_mulai', '<=', $today) // Hanya menampilkan jadwal yang dimulai sebelum atau pada hari ini
+        ->whereDate('tgl_selesai', '>=', $today) // dan berakhir setelah atau pada hari ini
+        ->orderBy('tgl_selesai', 'ASC')
+        ->get();
         $konten = KontenModel::all();
         $text = RunningTextModel::all();
         return view('publik.pages.flip', [

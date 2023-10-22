@@ -29,8 +29,7 @@ header('refresh:5;url=/');
     <link rel="stylesheet" href="assets/css/dark-theme.css" />
     <link rel="stylesheet" href="assets/css/semi-dark.css" />
     <link rel="stylesheet" href="assets/css/header-colors.css" />
-    <title>SISJANI</title>
-    {{-- <title>SISJANI | {{ $title }}</title> --}}
+    <title>SISJANI | {{ $title }}</title>
 </head>
 
 <body>

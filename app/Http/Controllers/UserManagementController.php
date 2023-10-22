@@ -9,19 +9,17 @@ class UserManagementController extends Controller
 {
     public function index()
     {
-        //$jadwal = JadwalModel::all();
         $user = User::all();
         return view('admin.pages.user-management.index', [
-            'title' => 'Dashboard',
+            'title' => 'User Management',
             'user' => $user,
         ]);
     }
 
     public function add()
     {
-        //$jadwal = JadwalModel::all();
         return view('admin.pages.user-management.tambah', [
-            'title' => 'Dashboard',
+            'title' => 'Tambah User',
         ]);
     }
 
@@ -46,21 +44,11 @@ class UserManagementController extends Controller
         return redirect()->to('/admin/user-management')->withSuccess('Data berhasil ditambahkan');
     }
 
-    // public function getJadwal()
-    // {
-    //     //$jadwal = JadwalModel::all();
-    //     $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
-    //     return view('admin.pages.dashboard', [
-    //         'title' => 'Jadwal',
-    //         'jadwal' => $jadwal
-    //     ]);
-    // }
-
     public function edit($id)
     {
         $user = User::find($id);
         return view('admin.pages.user-management.edit', [
-            'title' => 'Jadwal',
+            'title' => 'Edit User',
             'user' => $user,
         ]);
     }

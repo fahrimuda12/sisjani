@@ -29,13 +29,16 @@ Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::middleware('admin')->prefix('admin')->group(function () {
-        Route::get('/dashboard', [AdminController::class, 'index']);
+        Route::get('/dashboard', [AdminController::class, 'getJadwal']);
         Route::get('/running', [AdminController::class, 'getRunningText']);
         Route::prefix('jadwal')->group(function () {
             Route::get('/', [AdminController::class, 'getJadwal']);
             Route::get('/history', [AdminController::class, 'getHistory']);
             Route::get('/input', [AdminController::class, 'addJadwal']);
             Route::post('/input', [AdminController::class, 'saveJadwal']);
+            Route::get('/{id}/edit', [AdminController::class, 'editJadwal']);
+            Route::post('/{id}/edit', [AdminController::class, 'updateJadwal']);
+            Route::get('/{id}/hapus', [AdminController::class, 'deleteJadwal']);
         });
 
         Route::prefix('user-management')->group(function () {
@@ -68,10 +71,10 @@ Route::middleware('auth')->group(function () {
     });
 
     // user
-    Route::get('/dashboard', [UserController::class, 'index']);
+    Route::get('/dashboard', [UserController::class, 'getJadwal']);
         Route::get('/running', [UserController::class, 'getRunningText']);
         Route::prefix('jadwal')->group(function () {
-            // Route::get('/', [UserController::class, 'getJadwal']);
+            Route::get('/', [UserController::class, 'getJadwal']);
             Route::get('/history', [UserController::class, 'getHistory']);
             Route::get('/input', [UserController::class, 'addJadwal']);
             Route::post('/input', [UserController::class, 'saveJadwal']);

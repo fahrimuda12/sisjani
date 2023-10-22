@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Mirrored from codervent.com/syndron/demo/vertical/error-blank-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 29 Jul 2023 03:58:42 GMT -->
+
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -65,7 +65,4 @@
     </script>
 
 </body>
-
-
-<!-- Mirrored from codervent.com/syndron/demo/vertical/error-blank-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 29 Jul 2023 03:58:42 GMT -->
 </html>

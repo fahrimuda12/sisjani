@@ -10,7 +10,7 @@ class JadwalModel extends Model
     use HasFactory;
 
     public $table = 'jadwal';
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'nama',
@@ -19,6 +19,7 @@ class JadwalModel extends Model
         'tgl_selesai',
         'snack',
         'status',
+        'submitted_by',
     ];
     protected $casts = [
         'tgl_mulai' => 'datetime',

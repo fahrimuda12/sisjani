@@ -12,7 +12,7 @@ class KontenController extends Controller
     {
         $konten = KontenModel::all();
         return view('admin.pages.konten.index', [
-            'title' => 'Dashboard',
+            'title' => 'Konten',
             'konten' => $konten,
         ]);
     }
@@ -20,7 +20,7 @@ class KontenController extends Controller
     public function add()
     {
         return view('admin.pages.konten.tambah', [
-            'title' => 'Dashboard',
+            'title' => 'Input Konten',
         ]);
     }
 
@@ -33,7 +33,7 @@ class KontenController extends Controller
 
         if (!empty($request->file('foto'))) {
             $file = $request->file('foto');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $filename = date('Y_m_d_H.i.s') . '.' . $file->getClientOriginalExtension();
             $file->move(public_path() . '/slider/', $filename);
         } else {
             return redirect()->to('/admin/konten')->withErro('Foto kosong');
