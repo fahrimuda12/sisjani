@@ -78,12 +78,12 @@
             </footer>
         </div>
         <!--end wrapper-->
-        <script>
+        {{-- <script>
             function onlyOne(checkbox) {
                 var checkboxes = document.getElementsByName('check')
                 checkboxes.forEach((item) => {
                     if (item !== checkbox) item.checked = false
                 })
             }
-        </script>
+        </script> --}}
     @endsection

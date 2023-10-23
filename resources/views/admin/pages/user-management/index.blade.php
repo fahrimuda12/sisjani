@@ -89,8 +89,6 @@
                                                 </div>
                                             </td>
                                             {{-- <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View Details</button></td> --}}
-                                        <tr>
-
                                         </tr>
                                     @empty
                                         <tr>
@@ -102,8 +100,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
         <!--end page wrapper -->
@@ -118,7 +114,7 @@
     </div>
     <!--end wrapper-->
     <!--start switcher-->
-    <div class="switcher-wrapper">
+    {{-- <div class="switcher-wrapper">
         <div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
         </div>
         <div class="switcher-body">
@@ -211,5 +207,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+    <!--end switcher-->
 @endsection

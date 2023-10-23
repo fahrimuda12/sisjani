@@ -57,7 +57,8 @@
 							</div> --}}
                             <div class="ms-auto"><a href="/admin/jadwal/input"
                                     class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Input
-                                    Jadwal Rapat</a></div>
+                                    Jadwal Rapat</a>
+                            </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table mb-0">
@@ -104,7 +105,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="8" class="text-center">Tidak ada data</td>
+                                            <td colspan="10" class="text-center">Tidak ada data</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -128,7 +129,7 @@
     </div>
     <!--end wrapper-->
     <!--start switcher-->
-    <div class="switcher-wrapper">
+    {{-- <div class="switcher-wrapper">
         <div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
         </div>
         <div class="switcher-body">
@@ -221,5 +222,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection

@@ -23,8 +23,7 @@
 </head>
 <body>
     @yield('content')
-
-    <!--end switcher-->
+    
 	<!-- Bootstrap JS -->
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script> 
 	<!--plugins-->

@@ -27,11 +27,13 @@ class PublikController extends Controller
 
     public function flip()
     {
-        $today = Carbon::now();
-        $jadwal = JadwalModel::whereDate('tgl_mulai', '<=', $today) // Hanya menampilkan jadwal yang dimulai sebelum atau pada hari ini
-        ->whereDate('tgl_selesai', '>=', $today) // dan berakhir setelah atau pada hari ini
-        ->orderBy('tgl_selesai', 'ASC')
+        $today = Carbon::today();
+        $now = Carbon::now();
+        $jadwal = JadwalModel::whereDate('tgl_mulai', '>=', $today) // Hanya menampilkan jadwal yang dimulai sebelum atau pada hari ini
+        ->whereDate('tgl_selesai', '<=', $now) // dan berakhir setelah atau pada hari ini
+        ->orderBy('tgl_mulai', 'ASC')
         ->get();
+        // $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
         $konten = KontenModel::all();
         $text = RunningTextModel::all();
         return view('publik.pages.flip', [

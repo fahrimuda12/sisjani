@@ -72,16 +72,19 @@ header('refresh:60');
                                             <td>{{ ++$key }}</td>
                                             <td>{{ $value->nama }}</td>
                                             <td>{{ $value->ruangan }}</td>
-                                            <td>{{ $value->tgl_mulai->toTimeString() }}</td>
-                                            <td>{{ $value->tgl_selesai->toTimeString() }}</td>
+                                            <td>{{ $value->tgl_mulai->format('H:i') }}</td>
+                                            <td>{{ $value->tgl_selesai->format('H:i') }}</td>
                                             <td>@php echo ((strtotime(now()) < strtotime($value['tgl_mulai'])) ? ('Dijadwalkan') : ('Sedang Berlangsung')); @endphp</td>
                                         <tr>
 
                                         </tr>
                                     @empty
-                                        <tr>
-                                            <td colspan="7" class="text-center">Tidak ada data</td>
-                                        </tr>
+                                        @foreach ($konten as $key => $value)
+                                            <div class="{{ $key == 0 ? 'carousel-item-active' : 'carousel-item' }}">
+                                                <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100"
+                                                    alt="{{ $value->foto }}">
+                                            </div>
+                                        @endforeach
                                     @endforelse
                                 </tbody>
                             </table>
@@ -182,7 +185,7 @@ header('refresh:60');
         setInterval(function() {
             $('.fadein .page-wrapper').show().next('.fadein .page-wrapper').hide();
 
-        }, 1000 * {{ $konten }});
+        }, 2000 * {{ $konten }});
 
     });
 </script>

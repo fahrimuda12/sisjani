@@ -60,9 +60,8 @@
                                         <button type="submit" class="btn btn-primary px-4">Submit</button>
                                         <button type="reset" class="btn btn-light px-4">Reset</button>
                                     </div>
-
+                                </form>
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -79,12 +78,12 @@
             </footer>
         </div>
         <!--end wrapper-->
-        <script>
+        {{-- <script>
             function onlyOne(checkbox) {
                 var checkboxes = document.getElementsByName('check')
                 checkboxes.forEach((item) => {
                     if (item !== checkbox) item.checked = false
                 })
             }
-        </script>
+        </script> --}}
     @endsection

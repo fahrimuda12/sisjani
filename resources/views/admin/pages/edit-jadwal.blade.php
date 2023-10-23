@@ -39,111 +39,76 @@
 				</div>
                 <!--end breadcrumb-->
 				<div class="row">
-						{{-- <h6 class="mb-0 text-uppercase">Text Inputs</h6>
-						<hr/> --}}
-						<div class="card">
-							<div class="card-body">
-								{{-- get response --}}
-								@if (session('success'))
-									<div class="alert alert-success alert-dismissible fade show" role="alert">
-										<strong>{{ session('success') }}</strong>
-										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-									</div>
-								@elseif (session('error'))
-									<div class="alert alert-danger alert-dismissible fade show" role="alert">
-										<strong>{{ session('error') }}</strong>
-										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-									</div>
-								@endif
-								<form action={{ '/admin/jadwal/' . $jadwal->id . '/edit' }} method="POST"
-                                    enctype="multipart/form-data">
-									@csrf
-									<label class="form-label">Nama Rapat</label>
-									<input name="nama" class="form-control mb-3" type="text" placeholder="Masukkan Nama Rapat" aria-label="default input example"
-									value="{{ $jadwal->nama }}" required>
-									@error('nama')
-                                        <div class="invalid-feedback">
-                                            {{ nama }}
-                                        </div>
-                                    @enderror
-									<label class="form-label">Ruang Rapat</label>
-									<select name="ruangan" class="form-select mb-3" aria-label="Pilih Ruangan Rapat" required>
-										<option value="{{ $jadwal->ruangan }}" selected hidden>{{ $jadwal->ruangan }}</option>
-										<option value="R.Bromo">R.Bromo</option>
-										<option value="R.EOC">R.EOC</option>
-										<option value="R.Lawu">R.Lawu</option>
-										<option value="R.Raung">R.Raung</option>
-										<option value="Hall GSG">Hall GSG</option>
-										<option value="R.Kelas Kelud">R.Kelas Kelud</option> 
-										<option value="R.Procurement GSG Lt.II">R.Procurement GSG Lt.II</option>
-									</select>
-									<label class="form-label">Tanggal Mulai</label>
-									<input name="tgl_mulai" class="form-control mb-3" type="datetime-local" class="form-control" value="{{ $jadwal->tgl_mulai }}" required>
-									<label class="form-label">Tanggal Selesai</label>
-									<input name="tgl_selesai" class="form-control mb-3" type="datetime-local" class="form-control" value="{{ $jadwal->tgl_selesai }}" required>
-									<label class="form-label">Jumlah Snack</label>
-									<div class="input-group mb-3">
-										<input name="snack" type="number" max="1000" class="form-control" placeholder="Masukkan Jumlah Snack" aria-label="snack" aria-describedby="snack" value="{{ $jadwal->snack }}"> <span class="input-group-text" id="snack" required>Pax</span>
-									</div>
-									<label class="form-label">Status Rapat</label>
-									<select name="status" class="form-select mb-3" aria-label="Pilih Status Rapat" required>
-										<option value="{{ $jadwal->status }}" selected hidden>{{ $jadwal->status }}</option>
-										<option value="Internal">Internal</option>
-										<option value="Eksternal">Eksternal</option>
-									</select>
-									{{-- <div class="form-check">
-									<input class="form-check-input" type="checkbox" value="Internal" id="flexCheckIndeterminate" onclick="onlyOne(this)">
-									<label class="form-check-label" for="flexCheckIndeterminate">Internal</label>
-									<input class="form-check-input" type="checkbox" value="External" id="flexCheckIndeterminate" onclick="onlyOne(this)">
-									<label class="form-check-label mb-3" for="flexCheckIndeterminate">External</label>
-									</div> --}}
-									{{-- <div>
-									<label for="keterangan" class="form-label">Keterangan</label>
-									<textarea class="form-control" aria-label="keterangan"></textarea>
-									</div> --}}
-									<div class="d-md-flex d-grid align-items-center gap-3">
-										<button type="submit" class="btn btn-primary px-4">Submit</button>
-										<button type="reset" class="btn btn-light px-4">Reset</button>
-									</div>
-								</form>
-							</div>
+					{{-- <h6 class="mb-0 text-uppercase">Text Inputs</h6>
+					<hr/> --}}
+					<div class="card">
+						<div class="card-body">
+							{{-- get response --}}
+							@if (session('success'))
+								<div class="alert alert-success alert-dismissible fade show" role="alert">
+									<strong>{{ session('success') }}</strong>
+									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>
+							@elseif (session('error'))
+								<div class="alert alert-danger alert-dismissible fade show" role="alert">
+									<strong>{{ session('error') }}</strong>
+									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>
+							@endif
+							<form action={{ '/admin/jadwal/' . $jadwal->id . '/edit' }} method="POST"
+                                enctype="multipart/form-data">
+								@csrf
+								<label class="form-label">Nama Rapat</label>
+								<input name="nama" class="form-control mb-3" type="text" placeholder="Masukkan Nama Rapat" aria-label="default input example"
+								value="{{ $jadwal->nama }}" required>
+								@error('nama')
+                                    <div class="invalid-feedback">
+                                        {{ nama }}
+                                    </div>
+                                @enderror
+								<label class="form-label">Ruang Rapat</label>
+								<select name="ruangan" class="form-select mb-3" aria-label="Pilih Ruangan Rapat" required>
+									<option value="{{ $jadwal->ruangan }}" selected hidden>{{ $jadwal->ruangan }}</option>
+									<option value="R.Bromo">R.Bromo</option>
+									<option value="R.EOC">R.EOC</option>
+									<option value="R.Lawu">R.Lawu</option>
+									<option value="R.Raung">R.Raung</option>
+									<option value="Hall GSG">Hall GSG</option>
+									<option value="R.Kelas Kelud">R.Kelas Kelud</option> 
+									<option value="R.Procurement GSG Lt.II">R.Procurement GSG Lt.II</option>
+								</select>
+								<label class="form-label">Tanggal Mulai</label>
+								<input name="tgl_mulai" class="form-control mb-3" type="datetime-local" class="form-control" value="{{ $jadwal->tgl_mulai }}" required>
+								<label class="form-label">Tanggal Selesai</label>
+								<input name="tgl_selesai" class="form-control mb-3" type="datetime-local" class="form-control" value="{{ $jadwal->tgl_selesai }}" required>
+								<label class="form-label">Jumlah Snack</label>
+								<div class="input-group mb-3">
+									<input name="snack" type="number" max="1000" class="form-control" placeholder="Masukkan Jumlah Snack" aria-label="snack" aria-describedby="snack" value="{{ $jadwal->snack }}"> <span class="input-group-text" id="snack" required>Pax</span>
+								</div>
+								<label class="form-label">Status Rapat</label>
+								<select name="status" class="form-select mb-3" aria-label="Pilih Status Rapat" required>
+									<option value="{{ $jadwal->status }}" selected hidden>{{ $jadwal->status }}</option>
+									<option value="Internal">Internal</option>
+									<option value="Eksternal">Eksternal</option>
+								</select>
+								{{-- <div class="form-check">
+								<input class="form-check-input" type="checkbox" value="Internal" id="flexCheckIndeterminate" onclick="onlyOne(this)">
+								<label class="form-check-label" for="flexCheckIndeterminate">Internal</label>
+								<input class="form-check-input" type="checkbox" value="External" id="flexCheckIndeterminate" onclick="onlyOne(this)">
+								<label class="form-check-label mb-3" for="flexCheckIndeterminate">External</label>
+								</div> --}}
+								{{-- <div>
+								<label for="keterangan" class="form-label">Keterangan</label>
+								<textarea class="form-control" aria-label="keterangan"></textarea>
+								</div> --}}
+								<div class="d-md-flex d-grid align-items-center gap-3">
+									<button type="submit" class="btn btn-primary px-4">Submit</button>
+									<button type="reset" class="btn btn-light px-4">Reset</button>
+								</div>
+							</form>
 						</div>
-
-
-				{{-- <div class="card radius-10">
-					<div class="card-body">
-                        <form class="row g-3" action="/admin/jadwal/input" method="POST">
-                            @csrf
-                            <div class="col-md-12">
-                                <label for="input1" class="form-label">Nama</label>
-                                <input type="text" name="nama" class="form-control" id="input1" placeholder="First Name">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="ruangan" class="form-label">Ruangan</label>
-                                <select class="form-select" name="ruangan" id="ruangan" aria-label="Default select example">
-                                    <option selected>Ruangan</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                  </select>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="input6" class="form-label">Tanggal Mulai</label>
-                                <input type="datetime-local" name="tanggal_mulai" class="form-control" id="input6" placeholder="Date of Birth">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="input6" class="form-label">Tanggal Selesai</label>
-                                <input type="datetime-local" name="tanggal_selesai" class="form-control" id="input6" placeholder="Date of Birth">
-                            </div>
-                            <div class="col-md-12">
-                                <div class="d-md-flex d-grid align-items-center gap-3">
-                                    <button type="submit" class="btn btn-primary px-4">Submit</button>
-                                    <button type="reset" class="btn btn-light px-4">Reset</button>
-                                </div>
-                            </div>
-                        </form>
 					</div>
-				</div> --}}
+				</div>
 			</div>
 		</div>
 		<!--end page wrapper -->
