@@ -23,45 +23,52 @@
 							</ol>
 						</nav>
 					</div>
-					{{-- <div class="ms-auto">
-						<div class="btn-group">
-							<button type="button" class="btn btn-primary">Settings</button>
-							<button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
-							</button>
-							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
-								<a class="dropdown-item" href="javascript:;">Another action</a>
-								<a class="dropdown-item" href="javascript:;">Something else here</a>
-								<div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
-							</div>
-						</div>
-					</div> --}}
 				</div>
 				<!--end breadcrumb-->
                 <div class="card">
                     <div class="card-body">
-                        {{-- get response --}}
+                        <!--get response-->
                         @if (session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>{{ session('success') }}</strong>
+                            <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="font-35 text-white"><i class="bx bxs-check-circle"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-white">Berhasil!</h6>
+                                        <div class="text-white">{{ session('success') }}</div>
+                                    </div>
+                                </div>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
+                            {{-- <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>{{ session('success') }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div> --}}
                         @elseif (session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>{{ session('error') }}</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                            <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="font-35 text-white"><i class="bx bxs-message-square-x"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-white">Gagal!</h6>
+                                        <div class="text-white">{{ session('error') }}</div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {{-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{{ session('error') }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div> --}}
                         @endif
                         <div class="d-lg-flex align-items-center mb-4 gap-3">
                             {{-- <div class="position-relative">
-								<input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
+								<input type="text" class="form-control ps-5 radius-30" placeholder="Cari Jadwal Rapat"> <span class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
 							</div> --}}
-                            <div class="ms-auto"><a href="/admin/jadwal/input"
-                                    class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Tambah
-                                    Jadwal Rapat</a>
-                            </div>
+                            <div class="ms-auto"><a href="/admin/jadwal/input" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Tambah Jadwal Rapat</a></div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table mb-0">
+                            <table class="table mb-0 table-hover align-middle">
                                 <thead class="table-light">
                                     <tr>
                                         <th>No</th>

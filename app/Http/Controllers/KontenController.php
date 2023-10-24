@@ -33,7 +33,7 @@ class KontenController extends Controller
 
         if (!empty($request->file('foto'))) {
             $file = $request->file('foto');
-            $filename = date('Y_m_d_H.i.s') . '.' . $file->getClientOriginalExtension();
+            $filename = date('H.i.s-d_m_Y') . '.' . $file->getClientOriginalExtension();
             $file->move(public_path() . '/slider/', $filename);
         } else {
             return redirect()->to('/admin/konten')->withErro('Foto kosong');

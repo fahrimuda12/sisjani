@@ -31,108 +31,106 @@ header('refresh:60');
     <title>SISJANI | {{ $title }}</title>
 </head>
 
-<!--wrapper-->
-<div class="wrapper">
-    <!--sidebar wrapper -->
-    <div class="sidebar-wrapper" data-simplebar="true">
-        <div class="sidebar-header">
-            <a href="/login" target="_blank" rel="noreferrer noopener"><img
-                    src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon-sidebar" alt="logo icon"></a>
+<body>
+    <!--wrapper-->
+    <div class="wrapper">
+        <!--sidebar wrapper -->
+        <div class="sidebar-wrapper" data-simplebar="true">
+            <div class="sidebar-header">
+                <a href="/login" target="_blank" rel="noreferrer noopener"><img
+                        src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon-sidebar" alt="logo icon"></a>
+            </div>
+            <div class="metismenu" id="menu" style="background-color:#2ea0e2;text-align: center;">
+                <h3 id="hari" class="display-6" style="color:white;"></h3>
+                <h3 id="tanggal" class="display-6" style="color:white;"></h3>
+                <h3 id="jam" class="display-6" style="color:white"></h3>
+            </div>
+            <img src="{{ asset('assets/images/side.jpg') }}" width=100% height=70% />
         </div>
-        <div class="metismenu" id="menu" style="background-color:#2ea0e2;text-align: center;">
-            <h3 id="hari" class="display-6" style="color:white;"></h3>
-            <h3 id="tanggal" class="display-6" style="color:white;"></h3>
-            <h3 id="jam" class="display-6" style="color:white"></h3>
-        </div>
-        <img src="{{ asset('assets/images/side.jpg') }}" width=100% height=70% />
-    </div>
-    <!--end sidebar wrapper -->
+        <!--end sidebar wrapper -->
 
-    <!--start page wrapper -->
-    <div class="flip-wrapper">
-        <div class="flip-content">
-            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="table-responsive bg-white">
-                            <table class="table mb-0" style="font-size:1.5rem">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama</th>
-                                        <th>Ruangan</th>
-                                        <th>Mulai</th>
-                                        <th>Selesai</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($jadwal as $key => $value)
+        <!--start page wrapper -->
+        <div class="flip-wrapper">
+            <div class="flip-content">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="table-responsive bg-white">
+                                <table class="table mb-0 table-stripped" style="font-size:1.5rem">
+                                    <thead class="table-light">
                                         <tr>
-                                            <td>{{ ++$key }}</td>
-                                            <td>{{ $value->nama }}</td>
-                                            <td>{{ $value->ruangan }}</td>
-                                            <td>{{ $value->tgl_mulai->format('H:i') }}</td>
-                                            <td>{{ $value->tgl_selesai->format('H:i') }}</td>
-                                            <td>@php echo ((strtotime(now()) < strtotime($value['tgl_mulai'])) ? ('Dijadwalkan') : ('Sedang Berlangsung')); @endphp</td>
-                                        <tr>
-
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Ruangan</th>
+                                            <th>Mulai</th>
+                                            <th>Selesai</th>
+                                            <th>Status</th>
                                         </tr>
-                                    @empty
-                                        @foreach ($konten as $key => $value)
-                                            <div class="{{ $key == 0 ? 'carousel-item-active' : 'carousel-item' }}">
-                                                <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100"
-                                                    alt="{{ $value->foto }}">
-                                            </div>
-                                        @endforeach
-                                    @endforelse
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($jadwal as $key => $value)
+                                            <tr>
+                                                <td>{{ ++$key }}</td>
+                                                <td>{{ $value->nama }}</td>
+                                                <td>{{ $value->ruangan }}</td>
+                                                <td>{{ $value->tgl_mulai->format('H:i') }}</td>
+                                                <td>{{ $value->tgl_selesai->format('H:i') }}</td>
+                                                <td>@php echo ((strtotime(now()) < strtotime($value['tgl_mulai'])) ? ('Dijadwalkan') : ('Sedang Berlangsung')); @endphp</td>
+                                            </tr>
+                                        @empty
+                                            @foreach ($konten as $key => $value)
+                                                <div class="{{ $key == 0 ? 'carousel-item-active' : 'carousel-item' }}">
+                                                    <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100"
+                                                        alt="{{ $value->foto }}">
+                                                </div>
+                                            @endforeach
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    @forelse ($konten as $key => $value)
-                        <div class="{{ $key == 0 ? 'carousel-item' : 'carousel-item' }}">
-                            <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100"
-                                alt="{{ $value->foto }}">
-                        </div>
-                    @empty
-                        <div>
+                        @forelse ($konten as $key => $value)
+                            <div class="{{ $key == 0 ? 'carousel-item' : 'carousel-item' }}">
+                                <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100"
+                                    alt="{{ $value->foto }}">
+                            </div>
+                        @empty
+                            <div>
 
-                        </div>
-                    @endforelse
+                            </div>
+                        @endforelse
+                    </div>
+                    {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button> --}}
                 </div>
-                {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button> --}}
             </div>
         </div>
-    </div>
-    <!--end page wrapper -->
 
-    @forelse ($text as $key => $value)
+        {{-- @forelse ($text as $key => $value)
+            <footer class="marquee-footer">
+                <marquee class="mb-0" scrollamount='9'>{{ $value->text }}</marquee>
+            </footer>
+        @empty
+        @endforelse --}}
+
         <footer class="marquee-footer">
-            <marquee class="mb-0" scrollamount='9'>{{ $value->text }}</marquee>
+            <marquee class="mb-0" scrollamount='9'>
+                @forelse ($text as $key => $value)
+                    {{ $value->text }}
+                @empty
+                @endforelse
+            </marquee>
         </footer>
-    @empty
-    @endforelse
-
-    {{-- <footer class="marquee-footer">
-        <marquee class="mb-0" scrollamount='9'>
-            @forelse ($text as $key => $value)
-                {{ $value->text }}
-            @empty
-            @endforelse
-        </marquee>
-
-    </footer> --}}
-</div>
+    </div>
+<!--end page wrapper -->
 <!-- Bootstrap JS -->
 <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 <!--plugins-->
@@ -185,7 +183,7 @@ header('refresh:60');
         setInterval(function() {
             $('.fadein .page-wrapper').show().next('.fadein .page-wrapper').hide();
 
-        }, 2000 * {{ $konten }});
+        }, 5000 * {{ $konten }});
 
     });
 </script>

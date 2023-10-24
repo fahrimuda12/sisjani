@@ -19,13 +19,12 @@ class JadwalRapatSeeder extends Seeder
             "nama" => "Rapat 1",
             "ruangan" => "R.Bromo",
             "tgl_mulai" => Carbon::now(),
-            "tgl_selesai" => Carbon::now(),
+            "tgl_selesai" => Carbon::now()->addHour(),
             "snack" => 10,
             "status" => "Internal",
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now(),
-            "requested_by" => "User",
-            "approved_by" => "Administrator",            
+            "submitted_by" => "Administrator",      
         ]);
     }
 }

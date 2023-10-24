@@ -38,35 +38,35 @@
 				<!--end breadcrumb-->
 				<div class="card radius-10">
 					<div class="card-body">
-						<div class="table-responsive lead-table">
-							<table class="table mb-0 align-middle">
+						<div class="table-responsive">
+							<table class="table mb-0 table-hover align-middle">
 								<thead class="table-light">
 									<tr>
-										<th>No</th>
-                                        <th>Nama</th>
-                                        <th>Ruangan</th>
-                                        <th>Tanggal Mulai</th>
-                                        <th>Tanggal Selesai</th>
-                                        <th>Snack</th>
-                                        <th>Status</th>
-										<th>Username</th>
+										<th class="text-center">No</th>
+                                        <th class="text-center">Nama</th>
+                                        <th class="text-center">Ruangan</th>
+                                        <th class="text-center">Tanggal Mulai</th>
+                                        <th class="text-center">Tanggal Selesai</th>
+                                        <th class="text-center">Snack</th>
+                                        <th class="text-center">Status</th>
+										<th class="text-center">Username</th>
 									</tr>
 								</thead>
 								<tbody>
                                     @forelse ($jadwal as $key => $value)
                                     <tr>
-										<td>{{ ++$key }}</td>
-                                            <td>{{ $value->nama }}</td>
-                                            <td>{{ $value->ruangan }}</td>
-                                            <td>{{ $value->tgl_mulai}}</td>
-                                            <td>{{ $value->tgl_selesai}}</td>
-                                            <td>{{ $value->snack }}</td>
-                                            <td>{{ $value->status }}</td>
-											<td>{{ $value->submitted_by }}</td>
+										<td class="text-center">{{ ++$key }}</td>
+                                            <td class="text-center">{{ $value->nama }}</td>
+                                            <td class="text-center">{{ $value->ruangan }}</td>
+                                            <td class="text-center">{{ $value->tgl_mulai}}</td>
+                                            <td class="text-center">{{ $value->tgl_selesai}}</td>
+                                            <td class="text-center">{{ $value->snack }}</td>
+                                            <td class="text-center">{{ $value->status }}</td>
+											<td class="text-center">{{ $value->submitted_by }}</td>
 									</tr>
                                     @empty
                                         <tr>
-                                            <td colspan="6" class="text-center">Tidak ada data</td>
+                                            <td colspan="8" class="text-center">Tidak ada data</td>
                                         </tr>
                                     @endforelse
 								</tbody>

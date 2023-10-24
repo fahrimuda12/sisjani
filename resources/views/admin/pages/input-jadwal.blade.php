@@ -45,20 +45,34 @@
 						<div class="card-body">
 							{{-- get response --}}
 							@if (session('success'))
-								<div class="alert alert-success alert-dismissible fade show" role="alert">
-									<strong>{{ session('success') }}</strong>
+								<div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
+									<div class="d-flex align-items-center">
+										<div class="font-35 text-white"><i class="bx bxs-check-circle"></i>
+										</div>
+										<div class="ms-3">
+											<h6 class="mb-0 text-white">Berhasil!</h6>
+											<div class="text-white">{{ session('success') }}</div>
+										</div>
+									</div>
 									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 								</div>
 							@elseif (session('error'))
-								<div class="alert alert-danger alert-dismissible fade show" role="alert">
-									<strong>{{ session('error') }}</strong>
+								<div class="alert alert-danger border-0 bg-danger alert-dismissible fade show py-2">
+									<div class="d-flex align-items-center">
+										<div class="font-35 text-white"><i class="bx bxs-message-square-x"></i>
+										</div>
+										<div class="ms-3">
+											<h6 class="mb-0 text-white">Gagal!</h6>
+											<div class="text-white">{{ session('error') }}</div>
+										</div>
+									</div>
 									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 								</div>
 							@endif
 							<form action="/admin/jadwal/input" method="POST">
 								@csrf
 								<label class="form-label">Nama Rapat</label>
-								<input name="nama" class="form-control mb-3" type="text" placeholder="Masukkan Nama Rapat" aria-label="default input example" required>
+								<input name="nama" value="{{ old('nama') }}" class="form-control mb-3" type="text" placeholder="Masukkan Nama Rapat" aria-label="default input example" required>
 								<label class="form-label">Ruang Rapat</label>
 								<select name="ruangan" class="form-select mb-3" aria-label="Pilih Ruangan Rapat" required>
 									<option value="" disabled selected hidden>Pilih Ruangan</option>
@@ -76,13 +90,13 @@
 								<input name="tgl_selesai" class="form-control mb-3" type="datetime-local" class="form-control" required>
 								<label class="form-label">Jumlah Snack</label>
 								<div class="input-group mb-3">
-									<input name="snack" type="number" max="1000" class="form-control" placeholder="Masukkan Jumlah Snack" aria-label="snack" aria-describedby="snack"> <span class="input-group-text" id="snack" required>Pax</span>
+									<input name="snack" value="{{ old('snack') }}" type="number" max="1000" class="form-control" placeholder="Masukkan Jumlah Snack" aria-label="snack" aria-describedby="snack"> <span class="input-group-text" id="snack" required>Pax</span>
 								</div>
 								<label class="form-label">Status Rapat</label>
 								<select name="status" class="form-select mb-3" aria-label="Pilih Status Rapat" required>
 									<option value="" disabled selected hidden>Pilih Status Rapat</option>
-									<option value="Internal">Internal</option>
-									<option value="Eksternal">Eksternal</option>
+									<option value="Internal" {{ "Internal" === old('status') ? 'selected' : '' }}>Internal</option>
+									<option value="Eksternal" {{ "Eksternal" === old('status') ? 'selected' : '' }}>Eksternal</option>
 								</select>
 								<input name="submitted_by" class="form-control mb-3" type="text" class="form-control" value="{{ Auth::user()->name }}" hidden>
 								{{-- <div class="form-check">

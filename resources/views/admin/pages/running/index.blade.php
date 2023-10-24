@@ -40,17 +40,31 @@
                 <div class="card">
                     <div class="card-body">
                         {{-- get response --}}
-								@if (session('success'))
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong>{{ session('success') }}</strong>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                @elseif (session('error'))
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>{{ session('error') }}</strong>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                @endif
+						@if (session('success'))
+								<div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
+									<div class="d-flex align-items-center">
+										<div class="font-35 text-white"><i class="bx bxs-check-circle"></i>
+										</div>
+										<div class="ms-3">
+											<h6 class="mb-0 text-white">Berhasil!</h6>
+											<div class="text-white">{{ session('success') }}</div>
+										</div>
+									</div>
+									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>
+							@elseif (session('error'))
+								<div class="alert alert-danger border-0 bg-danger alert-dismissible fade show py-2">
+									<div class="d-flex align-items-center">
+										<div class="font-35 text-white"><i class="bx bxs-message-square-x"></i>
+										</div>
+										<div class="ms-3">
+											<h6 class="mb-0 text-white">Gagal!</h6>
+											<div class="text-white">{{ session('error') }}</div>
+										</div>
+									</div>
+									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>
+							@endif
                         <div class="d-lg-flex align-items-center mb-4 gap-3">
                             {{-- <div class="position-relative">
 								<input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
