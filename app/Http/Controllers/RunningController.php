@@ -74,7 +74,6 @@ class RunningController extends Controller
 
     public function destroy($id)
     {
-        // delete file foto
         $running = RunningTextModel::destroy($id);
         return redirect()->to('/admin/running')->withSuccess('Data berhasil dihapus');
     }

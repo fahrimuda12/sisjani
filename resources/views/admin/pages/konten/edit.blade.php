@@ -20,7 +20,7 @@
                                 <ol class="breadcrumb mb-0 p-0">
                                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Input konten</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Edit konten</li>
                                 </ol>
                             </nav>
                         </div>
@@ -48,6 +48,9 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <label for="foto" class="form-label">Konten</label>
+                                    <div class="mb-3">
+                                        <img src={{ asset('/slider/' . $konten->foto) }} class="d-block w-100" alt="{{ $konten->foto }}">
+                                    </div>
                                     <input name="foto" class="form-control mb-3" type="file"
                                         placeholder="Masukkan Nama Rapat" aria-label="default input example"
                                         aria-label="sdas" value="{{ $konten->foto }}" required>

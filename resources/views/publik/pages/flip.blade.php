@@ -16,8 +16,8 @@ header('refresh:60');
     <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
     <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
     <!-- loader-->
-    {{-- <link href="assets/css/pace.min.css" rel="stylesheet" />
-	<script src="assets/js/pace.min.js"></script> --}}
+    <link href="assets/css/pace.min.css" rel="stylesheet" />
+	<script src="assets/js/pace.min.js"></script>
     <!-- Bootstrap CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/bootstrap-extended.css" rel="stylesheet">
@@ -158,7 +158,7 @@ header('refresh:60');
         });
         var tanggal = now.toLocaleDateString('id-ID', {
             day: 'numeric',
-            month: 'long',
+            month: 'short',
             year: 'numeric'
         });
         var jam = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0') +

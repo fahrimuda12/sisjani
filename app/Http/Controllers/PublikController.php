@@ -11,10 +11,13 @@ class PublikController extends Controller
 {
     public function index()
     {
-        $today = Carbon::now();
-        $jadwal = JadwalModel::whereDate('tgl_mulai', '<=', $today) // Hanya menampilkan jadwal yang dimulai sebelum atau pada hari ini
-        ->whereDate('tgl_selesai', '>=', $today) // dan berakhir setelah atau pada hari ini
-        ->orderBy('tgl_selesai', 'ASC')
+        $today = Carbon::today();
+        $now = Carbon::now();
+        $tomorrow = $today->copy()->addDay(); // Menambahkan satu hari untuk mendapatkan tanggal besok
+        $jadwal = JadwalModel::where('tgl_mulai', '>=', $today) // Rapat dimulai pada hari ini atau setelahnya
+        ->where('tgl_selesai', '>=', $now) // Rapat berakhir pada hari ini atau setelahnya
+        ->where('tgl_mulai', '<', $tomorrow) // Rapat tidak dimulai di tanggal selanjutnya
+        ->orderBy('tgl_mulai', 'ASC')
         ->get();
         // $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
         $text = RunningTextModel::all();
@@ -29,8 +32,10 @@ class PublikController extends Controller
     {
         $today = Carbon::today();
         $now = Carbon::now();
-        $jadwal = JadwalModel::whereDate('tgl_mulai', '>=', $today) // Hanya menampilkan jadwal yang dimulai sebelum atau pada hari ini
-        ->whereDate('tgl_selesai', '<=', $now) // dan berakhir setelah atau pada hari ini
+        $tomorrow = $today->copy()->addDay(); // Menambahkan satu hari untuk mendapatkan tanggal besok
+        $jadwal = JadwalModel::where('tgl_mulai', '>=', $today) // Rapat dimulai pada hari ini atau setelahnya
+        ->where('tgl_selesai', '>=', $now) // Rapat berakhir pada hari ini atau setelahnya
+        ->where('tgl_mulai', '<', $tomorrow) // Rapat tidak dimulai di tanggal selanjutnya
         ->orderBy('tgl_mulai', 'ASC')
         ->get();
         // $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();

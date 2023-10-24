@@ -70,8 +70,8 @@ Route::middleware('auth')->group(function () {
 
     });
 
-    // user
-    Route::get('/dashboard', [UserController::class, 'getJadwal']);
+    Route::middleware('user')->group(function () {
+        Route::get('/dashboard', [UserController::class, 'getJadwal']);
         Route::get('/running', [UserController::class, 'getRunningText']);
         Route::prefix('jadwal')->group(function () {
             Route::get('/', [UserController::class, 'getJadwal']);
@@ -79,4 +79,5 @@ Route::middleware('auth')->group(function () {
             Route::get('/input', [UserController::class, 'addJadwal']);
             Route::post('/input', [UserController::class, 'saveJadwal']);
         });
+    });
 });

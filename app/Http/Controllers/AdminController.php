@@ -38,7 +38,7 @@ class AdminController extends Controller
     public function addJadwal()
     {
         return view('admin.pages.input-jadwal', [
-            'title' => 'Input Jadwal',
+            'title' => 'Input Jadwal Rapat',
         ]);
     }
 
@@ -91,7 +91,7 @@ class AdminController extends Controller
     {
         $jadwal = JadwalModel::find($id);
         return view('admin.pages.edit-jadwal', [
-            'title' => 'Input Jadwal',
+            'title' => 'Edit Jadwal Rapat',
             'jadwal' => $jadwal,
         ]);
     }
