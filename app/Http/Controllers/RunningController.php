@@ -62,9 +62,10 @@ class RunningController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'running' => 'required',
+            'text' => 'required',
         ]);
         $running = RunningTextModel::find($id);
+        $running->text = $request->input('text');
         $running->updated_at = Carbon::now();
         $running->save();
 
