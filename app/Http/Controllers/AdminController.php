@@ -22,7 +22,7 @@ class AdminController extends Controller
         $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
         return view('admin.pages.dashboard', [
             'title' => 'Jadwal Rapat',
-            'jadwal' => $jadwal
+            'jadwal' => $jadwal,
         ]);
     }
 
@@ -71,9 +71,11 @@ class AdminController extends Controller
             $conflictingRoom = $existingMeeting->ruangan;
             $conflictingSchedule = "mulai " . $existingMeeting->tgl_mulai . " hingga " . $existingMeeting->tgl_selesai;
 
-            return redirect('/admin/jadwal/input')->with('error', "Ruangan '$conflictingRoom' sudah digunakan pada '$conflictingMeeting' $conflictingSchedule");
+            // return error
+            return back()->withError("Ruangan '$conflictingRoom' sudah digunakan pada '$conflictingMeeting' $conflictingSchedule");
+            // return redirect('/admin/jadwal/input')->with('error', "Ruangan '$conflictingRoom' sudah digunakan pada '$conflictingMeeting' $conflictingSchedule");
         }
-        
+
         JadwalModel::create([
             'nama' => $request->nama,
             'ruangan' => $request->ruangan,
@@ -107,9 +109,9 @@ class AdminController extends Controller
             'status' => 'required',
         ], [
             'tgl_mulai.after' => 'Tanggal mulai harus setelah tanggal dan waktu sekarang.',
-            'tgl_selesai.after' => 'Tanggal selesai harus setelah tanggal dan waktu mulai.'
+            'tgl_selesai.after' => 'Tanggal selesai harus setelah tanggal dan waktu mulai.',
         ]);
-    
+
         // Mengambil jadwal rapat yang sedang diubah
         $jadwal = JadwalModel::find($id);
 
@@ -152,13 +154,11 @@ class AdminController extends Controller
         return redirect('/admin/dashboard')->with('success', 'Data berhasil diperbarui');
     }
 
-
     public function deleteJadwal($id)
     {
         JadwalModel::destroy($id);
-    
+
         return redirect('/admin/dashboard')->with('success', 'Data berhasil dihapus');
     }
-    
-    
+
 }

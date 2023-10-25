@@ -1,5 +1,5 @@
 @php
-header('refresh:60');
+    header('refresh:60');
 @endphp
 
 {{-- @extends('publik.main')
@@ -17,7 +17,7 @@ header('refresh:60');
     <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
     <!-- loader-->
     <link href="assets/css/pace.min.css" rel="stylesheet" />
-	<script src="assets/js/pace.min.js"></script>
+    <script src="assets/js/pace.min.js"></script>
     <!-- Bootstrap CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/bootstrap-extended.css" rel="stylesheet">
@@ -54,46 +54,57 @@ header('refresh:60');
             <div class="flip-content">
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="table-responsive bg-white">
-                                <table class="table mb-0 table-stripped" style="font-size:1.5rem">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Ruangan</th>
-                                            <th>Mulai</th>
-                                            <th>Selesai</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($jadwal as $key => $value)
+                        @if (count($jadwal) > 0)
+                            <div class="carousel-item active">
+                                <div class="table-responsive bg-white">
+                                    <table class="table mb-0 table-stripped" style="font-size:1.5rem">
+                                        <thead class="table-light">
                                             <tr>
-                                                <td>{{ ++$key }}</td>
-                                                <td>{{ $value->nama }}</td>
-                                                <td>{{ $value->ruangan }}</td>
-                                                <td>{{ $value->tgl_mulai->format('H:i') }}</td>
-                                                <td>{{ $value->tgl_selesai->format('H:i') }}</td>
-                                                <td>@php echo ((strtotime(now()) < strtotime($value['tgl_mulai'])) ? ('Dijadwalkan') : ('Sedang Berlangsung')); @endphp</td>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>Ruangan</th>
+                                                <th>Mulai</th>
+                                                <th>Selesai</th>
+                                                <th>Status</th>
                                             </tr>
-                                        @empty
-                                            @foreach ($konten as $key => $value)
-                                                <div class="{{ $key == 0 ? 'carousel-item-active' : 'carousel-item' }}">
-                                                    <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100"
-                                                        alt="{{ $value->foto }}">
-                                                </div>
-                                            @endforeach
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($jadwal as $key => $value)
+                                                <tr>
+                                                    <td>{{ ++$key }}</td>
+                                                    <td>{{ $value->nama }}</td>
+                                                    <td>{{ $value->ruangan }}</td>
+                                                    <td>{{ $value->tgl_mulai->format('H:i') }}</td>
+                                                    <td>{{ $value->tgl_selesai->format('H:i') }}</td>
+                                                    <td>@php echo ((strtotime(now()) < strtotime($value['tgl_mulai'])) ? ('Dijadwalkan') : ('Sedang Berlangsung')); @endphp</td>
+                                                </tr>
+                                            @empty
+                                                @foreach ($konten as $key => $value)
+                                                    <div
+                                                        class="{{ $key == 0 ? 'carousel-item-active' : 'carousel-item' }}">
+                                                        <img src={{ asset('/slider/' . $value->foto) }}
+                                                            class="d-block w-100" alt="{{ $value->foto }}">
+                                                    </div>
+                                                @endforeach
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                         @forelse ($konten as $key => $value)
-                            <div class="{{ $key == 0 ? 'carousel-item' : 'carousel-item' }}">
-                                <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100"
-                                    alt="{{ $value->foto }}">
-                            </div>
+                            @if ($key == 0)
+                                <div class="{{ count($jadwal) > 0 ? 'carousel-item' : 'carousel-item active' }}"">
+                                    <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100"
+                                        alt="{{ $value->foto }}">
+                                </div>
+                            @else
+                                <div class="carousel-item">
+                                    <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100"
+                                        alt="{{ $value->foto }}">
+                                </div>
+                            @endif
+
                         @empty
                             <div>
 
@@ -130,43 +141,43 @@ header('refresh:60');
             </marquee>
         </footer>
     </div>
-<!--end page wrapper -->
-<!-- Bootstrap JS -->
-<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-<!--plugins-->
-<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
-<!-- Vector map JavaScript -->
-{{-- <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
+    <!--end page wrapper -->
+    <!-- Bootstrap JS -->
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <!--plugins-->
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
+    <!-- Vector map JavaScript -->
+    {{-- <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script> --}}
-<!-- highcharts js -->
-{{-- <script src="{{ asset('assets/plugins/highcharts/js/highcharts.js') }}"></script>
+    <!-- highcharts js -->
+    {{-- <script src="{{ asset('assets/plugins/highcharts/js/highcharts.js') }}"></script>
 <script src="{{ asset('assets/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
 <script src="{{ asset('assets/js/index2.js') }}"></script> --}}
-<!--app JS-->
-<script src="{{ asset('assets/js/app.js') }}"></script>
+    <!--app JS-->
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 
-<script>
-    function updateTime() {
-        var now = new Date();
-        var hari = now.toLocaleDateString('id-ID', {
-            weekday: 'long'
-        });
-        var tanggal = now.toLocaleDateString('id-ID', {
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric'
-        });
-        var jam = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0') +
-            ':' + now.getSeconds().toString().padStart(2, '0'); // Format jam secara manual menjadi HH:mm:ss
+    <script>
+        function updateTime() {
+            var now = new Date();
+            var hari = now.toLocaleDateString('id-ID', {
+                weekday: 'long'
+            });
+            var tanggal = now.toLocaleDateString('id-ID', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            });
+            var jam = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0') +
+                ':' + now.getSeconds().toString().padStart(2, '0'); // Format jam secara manual menjadi HH:mm:ss
 
-        document.getElementById('hari').textContent = hari;
-        document.getElementById('tanggal').textContent = tanggal;
-        document.getElementById('jam').textContent = jam + ' WIB';
-    }
+            document.getElementById('hari').textContent = hari;
+            document.getElementById('tanggal').textContent = tanggal;
+            document.getElementById('jam').textContent = jam + ' WIB';
+        }
 
-    updateTime(); // Panggil sekali saat halaman dimuat untuk menampilkan waktu awal
-    setInterval(updateTime, 1000); // Update setiap 1 detik (1000ms)
-</script>
+        updateTime(); // Panggil sekali saat halaman dimuat untuk menampilkan waktu awal
+        setInterval(updateTime, 1000); // Update setiap 1 detik (1000ms)
+    </script>
