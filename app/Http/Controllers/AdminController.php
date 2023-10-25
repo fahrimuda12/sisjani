@@ -37,8 +37,8 @@ class AdminController extends Controller
 
     public function addJadwal()
     {
-        return view('admin.pages.input-jadwal', [
-            'title' => 'Input Jadwal Rapat',
+        return view('admin.pages.tambah-jadwal', [
+            'title' => 'Tambah Jadwal Rapat',
         ]);
     }
 
@@ -98,36 +98,49 @@ class AdminController extends Controller
 
     public function updateJadwal(Request $request, $id)
     {
-        $request->validate([
+        $validator = $request->validate([
             'nama' => 'required',
             'ruangan' => 'required',
             'tgl_mulai' => 'required|after:now',
             'tgl_selesai' => 'required|after:tgl_mulai',
             'snack' => 'required',
             'status' => 'required',
+        ], [
+            'tgl_mulai.after' => 'Tanggal mulai harus setelah tanggal dan waktu sekarang.',
+            'tgl_selesai.after' => 'Tanggal selesai harus setelah tanggal dan waktu mulai.'
         ]);
     
-        // Validasi apakah ada jadwal yang bertabrakan dalam ruangan yang sama
-        $existingMeeting = JadwalModel::where('ruangan', $request->ruangan)
-            ->where(function ($query) use ($request) {
-                $query->whereBetween('tgl_mulai', [$request->tgl_mulai, $request->tgl_selesai])
-                    ->orWhereBetween('tgl_selesai', [$request->tgl_mulai, $request->tgl_selesai])
-                    ->orWhere(function ($q) use ($request) {
-                        $q->where('tgl_mulai', '<', $request->tgl_mulai)
-                            ->where('tgl_selesai', '>', $request->tgl_selesai);
-                    });
-            })
-            ->first();
-    
-        if ($existingMeeting) {
-            $conflictingMeeting = $existingMeeting->nama;
-            $conflictingRoom = $existingMeeting->ruangan;
-            $conflictingSchedule = "mulai " . $existingMeeting->tgl_mulai . " hingga " . $existingMeeting->tgl_selesai;
-    
-            return redirect("/admin/jadwal/$id/edit")->with('error', "Ruangan '$conflictingRoom' sudah digunakan pada '$conflictingMeeting' $conflictingSchedule");
+        // Mengambil jadwal rapat yang sedang diubah
+        $jadwal = JadwalModel::find($id);
+
+        if ($jadwal) {
+            // Jika ada perubahan pada tgl_mulai atau tgl_selesai
+            if ($request->tgl_mulai != $jadwal->tgl_mulai || $request->tgl_selesai != $jadwal->tgl_selesai) {
+                // Validasi apakah ada jadwal yang bertabrakan dalam ruangan yang sama
+                $existingMeeting = JadwalModel::where('ruangan', $request->ruangan)
+                    ->where(function ($query) use ($request) {
+                        $query->whereBetween('tgl_mulai', [$request->tgl_mulai, $request->tgl_selesai])
+                            ->orWhereBetween('tgl_selesai', [$request->tgl_mulai, $request->tgl_selesai])
+                            ->orWhere(function ($q) use ($request) {
+                                $q->where('tgl_mulai', '<', $request->tgl_mulai)
+                                    ->where('tgl_selesai', '>', $request->tgl_selesai);
+                            });
+                    })
+                    ->where('id', '!=', $id) // Exclude the current meeting being edited
+                    ->first();
+
+                if ($existingMeeting) {
+                    $conflictingMeeting = $existingMeeting->nama;
+                    $conflictingRoom = $existingMeeting->ruangan;
+                    $conflictingSchedule = "mulai " . $existingMeeting->tgl_mulai . " hingga " . $existingMeeting->tgl_selesai;
+
+                    return redirect("/admin/jadwal/$id/edit")->with('error', "Ruangan '$conflictingRoom' sudah digunakan pada '$conflictingMeeting' $conflictingSchedule");
+                }
+            }
         }
-    
-        JadwalModel::where('id', $id)->update([
+
+        // Jika tidak ada konflik, lakukan pembaruan jadwal rapat
+        $jadwal->update([
             'nama' => $request->nama,
             'ruangan' => $request->ruangan,
             'tgl_mulai' => $request->tgl_mulai,
@@ -135,9 +148,10 @@ class AdminController extends Controller
             'snack' => $request->snack,
             'status' => $request->status,
         ]);
-    
+
         return redirect('/admin/dashboard')->with('success', 'Data berhasil diperbarui');
     }
+
 
     public function deleteJadwal($id)
     {

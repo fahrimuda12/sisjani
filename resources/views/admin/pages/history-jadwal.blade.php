@@ -42,27 +42,27 @@
 							<table class="table mb-0 table-hover align-middle">
 								<thead class="table-light">
 									<tr>
-										<th class="text-center">No</th>
-                                        <th class="text-center">Nama</th>
-                                        <th class="text-center">Ruangan</th>
-                                        <th class="text-center">Tanggal Mulai</th>
-                                        <th class="text-center">Tanggal Selesai</th>
-                                        <th class="text-center">Snack</th>
-                                        <th class="text-center">Status</th>
-										<th class="text-center">Username</th>
+										<th>No</th>
+                                        <th>Nama</th>
+                                        <th>Ruangan</th>
+                                        <th>Tanggal Mulai</th>
+                                        <th>Tanggal Selesai</th>
+                                        <th>Snack</th>
+                                        <th>Status</th>
+										<th>Username</th>
 									</tr>
 								</thead>
 								<tbody>
                                     @forelse ($jadwal as $key => $value)
                                     <tr>
-										<td class="text-center">{{ ++$key }}</td>
-                                            <td class="text-center">{{ $value->nama }}</td>
-                                            <td class="text-center">{{ $value->ruangan }}</td>
-                                            <td class="text-center">{{ $value->tgl_mulai}}</td>
-                                            <td class="text-center">{{ $value->tgl_selesai}}</td>
-                                            <td class="text-center">{{ $value->snack }}</td>
-                                            <td class="text-center">{{ $value->status }}</td>
-											<td class="text-center">{{ $value->submitted_by }}</td>
+										<td class="word-wrap column-max-width">{{ ++$key }}</td>
+                                            <td class="word-wrap column-max-width">{{ $value->nama }}</td>
+                                            <td class="word-wrap column-max-width">{{ $value->ruangan }}</td>
+                                            <td class="word-wrap column-max-width">{{ $value->tgl_mulai}}</td>
+                                            <td class="word-wrap column-max-width">{{ $value->tgl_selesai}}</td>
+                                            <td class="word-wrap column-max-width">{{ $value->snack }}</td>
+                                            <td class="word-wrap column-max-width">{{ $value->status }}</td>
+											<td class="word-wrap column-max-width">{{ $value->submitted_by }}</td>
 									</tr>
                                     @empty
                                         <tr>

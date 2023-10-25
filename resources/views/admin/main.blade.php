@@ -5,10 +5,11 @@
     <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> --}}
     <!--favicon-->
     <link rel="icon" href="{{ asset('assets/images/favicon-32x32.png') }}" type="image/png" />
     <!--plugins-->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/notifications/css/lobibox.min.css') }}">
     <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
@@ -26,12 +27,22 @@
     <link rel="stylesheet" href="{{ asset('assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/header-colors.css') }}" />
     <title>SISJANI | {{ $title }}</title>
+    <style>
+        /* Define a CSS class for table cells with word wrap */
+        .word-wrap {
+            white-space: normal; /* Enable word wrap */
+            word-wrap: break-word; /* Word wrap for non-IE browsers */
+        }
+    
+        /* Set a maximum width for specific columns, adjust as needed */
+        .column-max-width {
+            max-width: 200px; /* You can change this value to your preferred maximum width */
+        }
+    </style>
 </head>
 
 <body>
     @yield('content')
-
-    <!--end switcher-->
     <!-- Bootstrap JS -->
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <!--plugins-->
@@ -46,6 +57,10 @@
 	<script src="{{ asset('assets/plugins/highcharts/js/highcharts.js') }}"></script>
 	<script src="{{ asset('assets/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
 	<script src="{{ asset('assets/js/index2.js') }}"></script> --}}
+    <!--notification js -->
+    {{-- <script src="{{ asset('assets/plugins/notifications/js/lobibox.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/notifications/js/notifications.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/notifications/js/notification-custom-script.js') }}"></script> --}}
     <!--app JS-->
     <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>

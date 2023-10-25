@@ -28,6 +28,23 @@
                 <div class="card">
                     <div class="card-body">
                         <!--get response-->
+                        @if($errors->any())
+                            <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="font-35 text-white"><i class="bx bxs-message-square-x"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-white">Gagal!</h6>
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
                         @if (session('success'))
                             <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
                                 <div class="d-flex align-items-center">
@@ -86,15 +103,16 @@
                                 <tbody>
                                     @forelse ($jadwal as $key => $value)
                                         <tr>
-                                            <td>{{ ++$key }}</td>
-                                            <td>{{ $value->nama }}</td>
-                                            <td>{{ $value->ruangan }}</td>
-                                            <td>{{$value->tgl_selesai->format('D d/n/Y')}}</td>
-                                            <td>{{ $value->tgl_mulai->format('H:i') }}</td>
-                                            <td>{{ $value->tgl_selesai->format('H:i') }}</td>
-                                            <td>{{ $value->snack }}</td>
-                                            <td>{{ $value->status }}</td>
-                                            <td>{{ $value->submitted_by }}</td>
+                                            <td class="word-wrap column-max-width">{{ ++$key }}</td>
+                                            <td class="word-wrap column-max-width">{{ $value->nama }}</td>
+                                            <td class="word-wrap column-max-width">{{ $value->ruangan }}</td>
+                                            {{-- <td class="word-wrap column-max-width">{{ $value->tgl_mulai->translatedformat('D d/n/Y') ." - ". $value->tgl_selesai->translatedformat('D d/n/Y')}}</td> --}}
+                                            <td class="word-wrap column-max-width">{{ $value->tgl_mulai->translatedformat('D d/n/Y')}}</td>
+                                            <td class="word-wrap column-max-width">{{ $value->tgl_mulai->format('H:i') }}</td>
+                                            <td class="word-wrap column-max-width">{{ $value->tgl_selesai->format('H:i') }}</td>
+                                            <td class="word-wrap column-max-width">{{ $value->snack }}</td>
+                                            <td class="word-wrap column-max-width">{{ $value->status }}</td>
+                                            <td class="word-wrap column-max-width">{{ $value->submitted_by }}</td>
                                             <td>
                                                 <div class="d-flex order-actions">
                                                     <a class="btn btn-outline-primary"

@@ -170,21 +170,3 @@ header('refresh:60');
     updateTime(); // Panggil sekali saat halaman dimuat untuk menampilkan waktu awal
     setInterval(updateTime, 1000); // Update setiap 1 detik (1000ms)
 </script>
-
-{{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> --}}
-<script>
-    $(function() {
-        $('.fadein img:gt(0)').hide();
-        setInterval(function() {
-            $('.fadein :first-child').fadeOut().next('img').fadeIn().end().appendTo('.fadein');
-        }, 3000);
-        // set interval hidden image and table
-        $('.fadein .page-wrapper').hide();
-        setInterval(function() {
-            $('.fadein .page-wrapper').show().next('.fadein .page-wrapper').hide();
-
-        }, 5000 * {{ $konten }});
-
-    });
-</script>
-</body>
