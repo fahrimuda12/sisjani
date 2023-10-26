@@ -100,7 +100,7 @@
                                     <input name="tgl_selesai" value="{{ old('tgl_selesai') }}" class="form-control mb-3" type="datetime-local" class="form-control" required>
                                     <label class="form-label">Jumlah Snack</label>
                                     <div class="input-group mb-3">
-                                        <input name="snack" value="{{ old('snack') }}" type="number" max="1000" class="form-control" placeholder="Masukkan Jumlah Snack" aria-label="snack" aria-describedby="snack"> <span class="input-group-text" id="snack" required>Pax</span>
+                                        <input name="snack" value="{{ old('snack') }}" type="number" min="0" max="2000" class="form-control" placeholder="Masukkan Jumlah Snack" aria-label="snack" aria-describedby="snack"> <span class="input-group-text" id="snack" required>Pax</span>
                                     </div>
                                     <label class="form-label">Status Rapat</label>
                                     <select name="status" class="form-select mb-3" aria-label="Pilih Status Rapat" required>

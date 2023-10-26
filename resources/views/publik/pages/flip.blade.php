@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-    
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -76,9 +74,10 @@
                                                 </tr>
                                             @empty
                                                 @foreach ($konten as $key => $value)
-                                                    <div
-                                                        class="{{ $key == 0 ? 'carousel-item-active' : 'carousel-item' }}">
-                                                        <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100" alt="{{ $value->foto }}">
+                                                    <div class="{{ $key == 0 ? 'carousel-item-active' : 'carousel-item' }}">
+                                                        <div class="d-flex justify-content-center">
+                                                            <img src={{ asset('/slider/' . $value->foto) }} height=731px alt="{{ $value->foto }}">
+                                                        </div>
                                                     </div>
                                                 @endforeach
                                             @endforelse
@@ -89,12 +88,16 @@
                         @endif
                         @forelse ($konten as $key => $value)
                             @if ($key == 0)
-                                <div class="{{ count($jadwal) > 0 ? 'carousel-item' : 'carousel-item active' }}"">
-                                    <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100" alt="{{ $value->foto }}">
+                                <div class="{{ count($jadwal) > 0 ? 'carousel-item' : 'carousel-item active' }}">
+                                    <div class="d-flex justify-content-center">
+                                        <img src={{ asset('/slider/' . $value->foto) }} height=731px alt="{{ $value->foto }}">
+                                    </div>
                                 </div>
                             @else
                                 <div class="carousel-item">
-                                    <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100" alt="{{ $value->foto }}">
+                                    <div class="d-flex justify-content-center">
+                                        <img src={{ asset('/slider/' . $value->foto) }} height=731px alt="{{ $value->foto }}">
+                                    </div>
                                 </div>
                             @endif
                         @empty
@@ -208,6 +211,6 @@
             });
         }
         
-        setInterval(updateJadwal, 1000); // Update setiap 5 detik
+        setInterval(updateJadwal, 5000); // Update setiap 5 detik
     </script>
 </body>

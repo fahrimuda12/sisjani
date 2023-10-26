@@ -28,7 +28,7 @@ class KontenController extends Controller
     {
 
         $this->validate($request, [
-            'foto' => 'required|mimes:png,jpg,jpeg|max:2048',
+            'foto' => 'required|mimes:png,jpg,jpeg|max:10240',
         ]);
 
         if (!empty($request->file('foto'))) {

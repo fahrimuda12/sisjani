@@ -20,7 +20,8 @@
                                 <ol class="breadcrumb mb-0 p-0">
                                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Tambah User</li>
+                                    <li class="breadcrumb-item" aria-current="page">Konten</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Tambah Konten</li>
                                 </ol>
                             </nav>
                         </div>
@@ -63,6 +64,7 @@
                                     <input name="foto" class="form-control mb-3" type="file"
                                         placeholder="Masukkan Nama Rapat" aria-label="default input example"
                                         value="{{ old('nama') }}" required>
+                                    <p>Fullscreen 1116x731px<p>
                                     <div class="d-md-flex d-grid align-items-center gap-3">
                                         <button type="submit" class="btn btn-primary px-4">Submit</button>
                                         <button type="reset" class="btn btn-light px-4">Reset</button>
