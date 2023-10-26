@@ -91,9 +91,8 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Ruangan</th>
-                                        <th>Tanggal</th>
-                                        <th>Mulai</th>
-                                        <th>Selesai</th>
+                                        <th>Tanggal Mulai</th>
+                                        <th>Tanggal Selesai</th>
                                         <th>Snack</th>
                                         <th>Status</th>
                                         <th>Username</th>
@@ -103,16 +102,14 @@
                                 <tbody>
                                     @forelse ($jadwal as $key => $value)
                                         <tr>
-                                            <td class="word-wrap column-max-width">{{ ++$key }}</td>
-                                            <td class="word-wrap column-max-width">{{ $value->nama }}</td>
-                                            <td class="word-wrap column-max-width">{{ $value->ruangan }}</td>
-                                            {{-- <td class="word-wrap column-max-width">{{ $value->tgl_mulai->translatedformat('D d/n/Y') ." - ". $value->tgl_selesai->translatedformat('D d/n/Y')}}</td> --}}
-                                            <td class="word-wrap column-max-width">{{ $value->tgl_mulai->translatedformat('D d/n/Y')}}</td>
-                                            <td class="word-wrap column-max-width">{{ $value->tgl_mulai->format('H:i') }}</td>
-                                            <td class="word-wrap column-max-width">{{ $value->tgl_selesai->format('H:i') }}</td>
-                                            <td class="word-wrap column-max-width">{{ $value->snack }}</td>
-                                            <td class="word-wrap column-max-width">{{ $value->status }}</td>
-                                            <td class="word-wrap column-max-width">{{ $value->submitted_by }}</td>
+                                            <td class="word-wrap">{{ ++$key }}</td>
+                                            <td class="word-wrap">{{ $value->nama }}</td>
+                                            <td class="word-wrap">{{ $value->ruangan }}</td>
+                                            <td class="word-wrap">{{ $value->tgl_mulai->translatedformat('D d/n/Y H:i') }}</td>
+                                            <td class="word-wrap">{{ $value->tgl_selesai->translatedformat('D d/n/Y H:i') }}</td>
+                                            <td class="word-wrap">{{ $value->snack }}</td>
+                                            <td class="word-wrap">{{ $value->status }}</td>
+                                            <td class="word-wrap">{{ $value->submitted_by }}</td>
                                             <td>
                                                 <div class="d-flex order-actions">
                                                     <a class="btn btn-outline-primary"

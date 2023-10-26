@@ -19,7 +19,7 @@ class AdminController extends Controller
 
     public function getJadwal()
     {
-        $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
+        $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_mulai', 'ASC')->get();
         return view('admin.pages.dashboard', [
             'title' => 'Jadwal Rapat',
             'jadwal' => $jadwal,
@@ -28,7 +28,7 @@ class AdminController extends Controller
 
     public function getHistory()
     {
-        $jadwal = JadwalModel::where('tgl_selesai', '<', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
+        $jadwal = JadwalModel::where('tgl_selesai', '<', Carbon::now())->orderBy('tgl_selesai', 'DESC')->get();
         return view('admin.pages.history-jadwal', [
             'title' => 'History Rapat',
             'jadwal' => $jadwal,
@@ -52,6 +52,9 @@ class AdminController extends Controller
             'snack' => 'required',
             'status' => 'required',
             'submitted_by' => 'required',
+        ], [
+            'tgl_mulai.after' => 'Tanggal mulai harus setelah tanggal dan waktu sekarang.',
+            'tgl_selesai.after' => 'Tanggal selesai harus setelah tanggal dan waktu mulai.',
         ]);
 
         // Validasi apakah ada jadwal yang bertabrakan dalam ruangan yang sama
@@ -71,9 +74,7 @@ class AdminController extends Controller
             $conflictingRoom = $existingMeeting->ruangan;
             $conflictingSchedule = "mulai " . $existingMeeting->tgl_mulai . " hingga " . $existingMeeting->tgl_selesai;
 
-            // return error
-            return back()->withError("Ruangan '$conflictingRoom' sudah digunakan pada '$conflictingMeeting' $conflictingSchedule");
-            // return redirect('/admin/jadwal/input')->with('error', "Ruangan '$conflictingRoom' sudah digunakan pada '$conflictingMeeting' $conflictingSchedule");
+            return back()->withInput()->withError("Ruangan '$conflictingRoom' sudah digunakan pada '$conflictingMeeting' $conflictingSchedule");
         }
 
         JadwalModel::create([
@@ -100,7 +101,7 @@ class AdminController extends Controller
 
     public function updateJadwal(Request $request, $id)
     {
-        $validator = $request->validate([
+        $request->validate([
             'nama' => 'required',
             'ruangan' => 'required',
             'tgl_mulai' => 'required|after:now',
@@ -117,27 +118,25 @@ class AdminController extends Controller
 
         if ($jadwal) {
             // Jika ada perubahan pada tgl_mulai atau tgl_selesai
-            if ($request->tgl_mulai != $jadwal->tgl_mulai || $request->tgl_selesai != $jadwal->tgl_selesai) {
-                // Validasi apakah ada jadwal yang bertabrakan dalam ruangan yang sama
-                $existingMeeting = JadwalModel::where('ruangan', $request->ruangan)
-                    ->where(function ($query) use ($request) {
-                        $query->whereBetween('tgl_mulai', [$request->tgl_mulai, $request->tgl_selesai])
-                            ->orWhereBetween('tgl_selesai', [$request->tgl_mulai, $request->tgl_selesai])
-                            ->orWhere(function ($q) use ($request) {
-                                $q->where('tgl_mulai', '<', $request->tgl_mulai)
-                                    ->where('tgl_selesai', '>', $request->tgl_selesai);
-                            });
-                    })
-                    ->where('id', '!=', $id) // Exclude the current meeting being edited
-                    ->first();
+            // Validasi apakah ada jadwal yang bertabrakan dalam ruangan yang sama
+            $existingMeeting = JadwalModel::where('ruangan', $request->ruangan)
+                ->where(function ($query) use ($request) {
+                    $query->whereBetween('tgl_mulai', [$request->tgl_mulai, $request->tgl_selesai])
+                        ->orWhereBetween('tgl_selesai', [$request->tgl_mulai, $request->tgl_selesai])
+                        ->orWhere(function ($q) use ($request) {
+                            $q->where('tgl_mulai', '<', $request->tgl_mulai)
+                                ->where('tgl_selesai', '>', $request->tgl_selesai);
+                        });
+                })
+                ->where('id', '!=', $id) // Exclude the current meeting being edited
+                ->first();
 
-                if ($existingMeeting) {
-                    $conflictingMeeting = $existingMeeting->nama;
-                    $conflictingRoom = $existingMeeting->ruangan;
-                    $conflictingSchedule = "mulai " . $existingMeeting->tgl_mulai . " hingga " . $existingMeeting->tgl_selesai;
+            if ($existingMeeting) {
+                $conflictingMeeting = $existingMeeting->nama;
+                $conflictingRoom = $existingMeeting->ruangan;
+                $conflictingSchedule = "mulai " . $existingMeeting->tgl_mulai . " hingga " . $existingMeeting->tgl_selesai;
 
-                    return redirect("/admin/jadwal/$id/edit")->with('error', "Ruangan '$conflictingRoom' sudah digunakan pada '$conflictingMeeting' $conflictingSchedule");
-                }
+                return back()->withError("Ruangan '$conflictingRoom' sudah digunakan pada '$conflictingMeeting' $conflictingSchedule");
             }
         }
 
@@ -160,5 +159,4 @@ class AdminController extends Controller
 
         return redirect('/admin/dashboard')->with('success', 'Data berhasil dihapus');
     }
-
 }

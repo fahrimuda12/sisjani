@@ -27,18 +27,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/header-colors.css') }}" />
     <title>SISJANI | {{ $title }}</title>
-    <style>
-        /* Define a CSS class for table cells with word wrap */
-        .word-wrap {
-            white-space: normal; /* Enable word wrap */
-            word-wrap: break-word; /* Word wrap for non-IE browsers */
-        }
-    
-        /* Set a maximum width for specific columns, adjust as needed */
-        .column-max-width {
-            max-width: 200px; /* You can change this value to your preferred maximum width */
-        }
-    </style>
 </head>
 
 <body>

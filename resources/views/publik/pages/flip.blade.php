@@ -82,8 +82,7 @@
                                                 @foreach ($konten as $key => $value)
                                                     <div
                                                         class="{{ $key == 0 ? 'carousel-item-active' : 'carousel-item' }}">
-                                                        <img src={{ asset('/slider/' . $value->foto) }}
-                                                            class="d-block w-100" alt="{{ $value->foto }}">
+                                                        <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100" alt="{{ $value->foto }}">
                                                     </div>
                                                 @endforeach
                                             @endforelse
@@ -95,16 +94,13 @@
                         @forelse ($konten as $key => $value)
                             @if ($key == 0)
                                 <div class="{{ count($jadwal) > 0 ? 'carousel-item' : 'carousel-item active' }}"">
-                                    <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100"
-                                        alt="{{ $value->foto }}">
+                                    <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100" alt="{{ $value->foto }}">
                                 </div>
                             @else
                                 <div class="carousel-item">
-                                    <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100"
-                                        alt="{{ $value->foto }}">
+                                    <img src={{ asset('/slider/' . $value->foto) }} class="d-block w-100" alt="{{ $value->foto }}">
                                 </div>
                             @endif
-
                         @empty
                             <div>
 

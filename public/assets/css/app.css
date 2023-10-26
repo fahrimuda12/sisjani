@@ -288,6 +288,18 @@ a {
 }
 
 
+.word-wrap {
+	white-space: normal; 
+	word-wrap: break-word;
+}
+
+
+
+.column-max-width-back {
+	max-width: 200px;
+}
+
+
 
 .wrapper.toggled .topbar {
 

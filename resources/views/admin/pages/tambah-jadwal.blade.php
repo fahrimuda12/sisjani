@@ -28,7 +28,7 @@
                     </div>
                     <!--end breadcrumb-->
                     <div class="row">
-                        {{-- <h6 class="mb-0 text-uppercase">Text Inputs</h6>
+                        {{-- <h6 class="mb-0 text-uppercase">Tambah Jadwal Rapat</h6>
 					<hr/> --}}
                         <div class="card">
                             <div class="card-body">
@@ -59,6 +59,22 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close"></button>
                                     </div>
+                                @elseif ($errors->any())
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show py-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="font-35 text-white"><i class="bx bxs-message-square-x"></i>
+                                            </div>
+                                            <div class="ms-3">
+                                                <h6 class="mb-0 text-white">Gagal!</h6>
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li class="text-white">{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
                                 @endif
                                 <form action="/admin/jadwal/input" method="POST">
                                     @csrf
@@ -70,48 +86,39 @@
                                     <select name="ruangan" class="form-select mb-3" aria-label="Pilih Ruangan Rapat"
                                         required>
                                         <option value="" disabled selected hidden>Pilih Ruangan</option>
-                                        <option value="R.Bromo">R.Bromo</option>
-                                        <option value="R.EOC">R.EOC</option>
-                                        <option value="R.Lawu">R.Lawu</option>
-                                        <option value="R.Raung">R.Raung</option>
-                                        <option value="Hall GSG">Hall GSG</option>
-                                        <option value="R.Kelas Kelud">R.Kelas Kelud</option>
-                                        <option value="R.Procurement GSG Lt.II">R.Procurement GSG Lt.II</option>
+                                        <option value="R.Bromo" {{ 'R.Bromo' === old('ruangan') ? 'selected' : '' }}>R.Bromo</option>
+                                        <option value="R.EOC" {{ 'R.EOC' === old('ruangan') ? 'selected' : '' }}>R.EOC</option>
+                                        <option value="R.Lawu" {{ 'R.Lawu' === old('ruangan') ? 'selected' : '' }}>R.Lawu</option>
+                                        <option value="R.Raung" {{ 'R.Raung' === old('ruangan') ? 'selected' : '' }}>R.Raung</option>
+                                        <option value="Hall GSG" {{ 'Hall GSG' === old('ruangan') ? 'selected' : '' }}>Hall GSG</option>
+                                        <option value="R.Kelas Kelud" {{ 'R.Kelas Kelud' === old('ruangan') ? 'selected' : '' }}>R.Kelas Kelud</option>
+                                        <option value="R.Procurement GSG Lt.II" {{ 'R.Procurement GSG Lt.II' === old('ruangan') ? 'selected' : '' }}>R.Procurement GSG Lt.II</option>
                                     </select>
                                     <label class="form-label">Tanggal Mulai</label>
-                                    <input name="tgl_mulai" class="form-control mb-3" type="datetime-local"
-                                        class="form-control" required>
+                                    <input name="tgl_mulai" value="{{ old('tgl_mulai') }}" class="form-control mb-3" type="datetime-local" class="form-control" required>
                                     <label class="form-label">Tanggal Selesai</label>
-                                    <input name="tgl_selesai" class="form-control mb-3" type="datetime-local"
-                                        class="form-control" required>
+                                    <input name="tgl_selesai" value="{{ old('tgl_selesai') }}" class="form-control mb-3" type="datetime-local" class="form-control" required>
                                     <label class="form-label">Jumlah Snack</label>
                                     <div class="input-group mb-3">
-                                        <input name="snack" value="{{ old('snack') }}" type="number" max="1000"
-                                            class="form-control" placeholder="Masukkan Jumlah Snack" aria-label="snack"
-                                            aria-describedby="snack"> <span class="input-group-text" id="snack"
-                                            required>Pax</span>
+                                        <input name="snack" value="{{ old('snack') }}" type="number" max="1000" class="form-control" placeholder="Masukkan Jumlah Snack" aria-label="snack" aria-describedby="snack"> <span class="input-group-text" id="snack" required>Pax</span>
                                     </div>
                                     <label class="form-label">Status Rapat</label>
-                                    <select name="status" class="form-select mb-3" aria-label="Pilih Status Rapat"
-                                        required>
+                                    <select name="status" class="form-select mb-3" aria-label="Pilih Status Rapat" required>
                                         <option value="" disabled selected hidden>Pilih Status Rapat</option>
-                                        <option value="Internal" {{ 'Internal' === old('status') ? 'selected' : '' }}>
-                                            Internal</option>
-                                        <option value="Eksternal" {{ 'Eksternal' === old('status') ? 'selected' : '' }}>
-                                            Eksternal</option>
+                                        <option value="Internal" {{ 'Internal' === old('status') ? 'selected' : '' }}>Internal</option>
+                                        <option value="Eksternal" {{ 'Eksternal' === old('status') ? 'selected' : '' }}>Eksternal</option>
                                     </select>
-                                    <input name="submitted_by" class="form-control mb-3" type="text" class="form-control"
-                                        value="{{ Auth::user()->name }}" hidden>
+                                    <input name="submitted_by" class="form-control mb-3" type="text" class="form-control" value="{{ Auth::user()->name }}" hidden>
                                     {{-- <div class="form-check">
-								<input class="form-check-input" type="checkbox" value="Internal" id="flexCheckIndeterminate" onclick="onlyOne(this)">
-								<label class="form-check-label" for="flexCheckIndeterminate">Internal</label>
-								<input class="form-check-input" type="checkbox" value="External" id="flexCheckIndeterminate" onclick="onlyOne(this)">
-								<label class="form-check-label mb-3" for="flexCheckIndeterminate">External</label>
-								</div> --}}
-                                    {{-- <div>
-								<label for="keterangan" class="form-label">Keterangan</label>
-								<textarea class="form-control" aria-label="keterangan"></textarea>
-								</div> --}}
+                                    <input class="form-check-input" type="checkbox" value="Internal" id="flexCheckIndeterminate" onclick="onlyOne(this)">
+                                    <label class="form-check-label" for="flexCheckIndeterminate">Internal</label>
+                                    <input class="form-check-input" type="checkbox" value="External" id="flexCheckIndeterminate" onclick="onlyOne(this)">
+                                    <label class="form-check-label mb-3" for="flexCheckIndeterminate">External</label>
+                                    </div> --}}
+                                        {{-- <div>
+                                    <label for="keterangan" class="form-label">Keterangan</label>
+                                    <textarea class="form-control" aria-label="keterangan"></textarea>
+                                    </div> --}}
                                     <div class="d-md-flex d-grid align-items-center gap-3">
                                         <button type="submit" class="btn btn-primary px-4">Submit</button>
                                         <button type="reset" class="btn btn-light px-4">Reset</button>
