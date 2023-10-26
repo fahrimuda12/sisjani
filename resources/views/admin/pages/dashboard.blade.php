@@ -25,7 +25,7 @@
 					</div>
 				</div>
 				<!--end breadcrumb-->
-                <div class="card">
+                <div class="card radius-10">
                     <div class="card-body">
                         <!--get response-->
                         @if($errors->any())
@@ -85,7 +85,7 @@
                             <div class="ms-auto"><a href="/admin/jadwal/input" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Tambah Jadwal Rapat</a></div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table mb-0 table-hover align-middle">
+                            <table id="jadwal" class="table mb-0 table-hover align-middle">
                                 <thead class="table-light">
                                     <tr>
                                         <th>No</th>
@@ -105,8 +105,8 @@
                                             <td class="word-wrap">{{ ++$key }}</td>
                                             <td class="word-wrap">{{ $value->nama }}</td>
                                             <td class="word-wrap">{{ $value->ruangan }}</td>
-                                            <td class="word-wrap">{{ $value->tgl_mulai->translatedformat('D d/n/Y H:i') }}</td>
-                                            <td class="word-wrap">{{ $value->tgl_selesai->translatedformat('D d/n/Y H:i') }}</td>
+                                            <td class="word-wrap text-center">{{ $value->tgl_mulai->translatedformat('D d/n/Y H:i') }}</td>
+                                            <td class="word-wrap text-center">{{ $value->tgl_selesai->translatedformat('D d/n/Y H:i') }}</td>
                                             <td class="word-wrap">{{ $value->snack }}</td>
                                             <td class="word-wrap">{{ $value->status }}</td>
                                             <td class="word-wrap">{{ $value->submitted_by }}</td>
@@ -122,8 +122,6 @@
                                                 </div>
                                             </td>
                                             {{-- <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View Details</button></td> --}}
-                                        <tr>
-
                                         </tr>
                                     @empty
                                         <tr>

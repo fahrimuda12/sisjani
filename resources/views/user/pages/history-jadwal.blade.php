@@ -10,8 +10,7 @@
 		<!--end header -->
 		<!--start page wrapper -->
 		<div class="page-wrapper">
-			<div class="page-content">
-				<!--breadcrumb-->
+			<div class="page-content"><!--breadcrumb-->
 				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 					<div class="breadcrumb-title pe-3">Dashboard</div>
 					<div class="ps-3">
@@ -39,8 +38,8 @@
 				<!--end breadcrumb-->
 				<div class="card radius-10">
 					<div class="card-body">
-						<div class="table-responsive lead-table">
-							<table class="table mb-0 align-middle">
+						<div class="table-responsive">
+							<table class="table mb-0 table-hover align-middle">
 								<thead class="table-light">
 									<tr>
 										<th>No</th>
@@ -56,18 +55,18 @@
 								<tbody>
                                     @forelse ($jadwal as $key => $value)
                                     <tr>
-										<td>{{ ++$key }}</td>
-                                            <td>{{ $value->nama }}</td>
-                                            <td>{{ $value->ruangan }}</td>
-                                            <td>{{ $value->tgl_mulai}}</td>
-                                            <td>{{ $value->tgl_selesai}}</td>
-                                            <td>{{ $value->snack }}</td>
-                                            <td>{{ $value->status }}</td>
-											<td>{{ $value->submitted_by }}</td>
+										<td class="word-wrap column-max-width">{{ ++$key }}</td>
+                                            <td class="word-wrap">{{ $value->nama }}</td>
+                                            <td class="word-wrap">{{ $value->ruangan }}</td>
+                                            <td class="word-wrap">{{ $value->tgl_mulai->translatedformat('D d/n/Y H:i') }}</td>
+                                            <td class="word-wrap">{{ $value->tgl_selesai->translatedformat('D d/n/Y H:i') }}</td>
+                                            <td class="word-wrap">{{ $value->snack }}</td>
+                                            <td class="word-wrap">{{ $value->status }}</td>
+											<td class="word-wrap">{{ $value->submitted_by }}</td>
 									</tr>
                                     @empty
                                         <tr>
-                                            <td colspan="6" class="text-center">Tidak ada data</td>
+                                            <td colspan="8" class="text-center">Tidak ada data</td>
                                         </tr>
                                     @endforelse
 								</tbody>
@@ -89,7 +88,7 @@
 	</div>
 	<!--end wrapper-->
 	<!--start switcher-->
-	<div class="switcher-wrapper">
+	{{-- <div class="switcher-wrapper">
 		<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
 		</div>
 		<div class="switcher-body">
@@ -182,5 +181,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
+	<!--end switcher-->
 @endsection

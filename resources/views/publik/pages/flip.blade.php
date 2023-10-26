@@ -1,10 +1,6 @@
-@php
-    header('refresh:60');
-@endphp
-
-{{-- @extends('publik.main')
-@session('content-publik') --}}
-
+<!DOCTYPE html>
+<html lang="en">
+    
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -57,7 +53,7 @@
                         @if (count($jadwal) > 0)
                             <div class="carousel-item active">
                                 <div class="table-responsive bg-white">
-                                    <table class="table mb-0 table-stripped" style="font-size:1.5rem">
+                                    <table id="jadwal" class="table mb-0 table-stripped" style="font-size:1.5rem">
                                         <thead class="table-light">
                                             <tr>
                                                 <th>No</th>
@@ -177,3 +173,41 @@
         updateTime(); // Panggil sekali saat halaman dimuat untuk menampilkan waktu awal
         setInterval(updateTime, 1000); // Update setiap 1 detik (1000ms)
     </script>
+    <script>
+        function updateJadwal() {
+            $.ajax({
+                url: '/flip',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log('Data Rapat (Hasil Ajax):', data);
+                    $('#jadwal tbody').empty();
+
+                    // Loop melalui data rapat dan tambahkan baris baru ke tabel
+                    for (var i = 0; i < data.length; i++) {
+                        var meeting = data[i];
+                        var status = (new Date() < new Date(meeting.tgl_mulai)) ? 'Dijadwalkan' : 'Sedang Berlangsung';
+                        var tglMulai = new Date(meeting.tgl_mulai).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', hour12: false });
+                        var tglSelesai = new Date(meeting.tgl_selesai).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', hour12: false });
+                        var row = $('<tr>').append(
+                            $('<td>').text(i + 1),
+                            $('<td>').text(meeting.nama),
+                            $('<td>').text(meeting.ruangan),
+                            $('<td>').text(tglMulai),
+                            $('<td>').text(tglSelesai),
+                            $('<td>').text(status)
+                        );
+
+                        $('#jadwal tbody').append(row);
+                    }
+
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+        
+        setInterval(updateJadwal, 1000); // Update setiap 5 detik
+    </script>
+</body>

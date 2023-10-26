@@ -38,8 +38,8 @@
 				<!--end breadcrumb-->
 				<div class="card radius-10">
 					<div class="card-body">
-						<div class="table-responsive">
-							<table class="table mb-0 table-hover align-middle">
+						<div class="table-responsive">						
+							<table id="history" class="table mb-0 table-hover align-middle">
 								<thead class="table-light">
 									<tr>
 										<th>No</th>
@@ -58,8 +58,8 @@
 										<td class="word-wrap column-max-width">{{ ++$key }}</td>
                                             <td class="word-wrap">{{ $value->nama }}</td>
                                             <td class="word-wrap">{{ $value->ruangan }}</td>
-                                            <td class="word-wrap">{{ $value->tgl_mulai->translatedformat('D d/n/Y H:i') }}</td>
-                                            <td class="word-wrap">{{ $value->tgl_selesai->translatedformat('D d/n/Y H:i') }}</td>
+                                            <td class="word-wrap text-center">{{ $value->tgl_mulai->translatedformat('D d/n/Y H:i') }}</td>
+                                            <td class="word-wrap text-center">{{ $value->tgl_selesai->translatedformat('D d/n/Y H:i') }}</td>
                                             <td class="word-wrap">{{ $value->snack }}</td>
                                             <td class="word-wrap">{{ $value->status }}</td>
 											<td class="word-wrap">{{ $value->submitted_by }}</td>

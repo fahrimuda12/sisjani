@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function getJadwal()
     {
-        $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
+        $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_mulai', 'ASC')->get();
         return view('user.pages.dashboard', [
             'title' => 'Jadwal Rapat',
             'jadwal' => $jadwal
@@ -28,17 +28,17 @@ class UserController extends Controller
 
     public function getHistory()
     {
-        $jadwal = JadwalModel::where('tgl_selesai', '<', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
+        $jadwal = JadwalModel::where('tgl_selesai', '<', Carbon::now())->orderBy('tgl_selesai', 'DESC')->get();
         return view('user.pages.history-jadwal', [
-            'title' => 'History Rapat',
+            'title' => 'History Jadwal Rapat',
             'jadwal' => $jadwal,
         ]);
     }
 
     public function addJadwal()
     {
-        return view('user.pages.input-jadwal', [
-            'title' => 'Input Jadwal',
+        return view('user.pages.tambah-jadwal', [
+            'title' => 'Tambah Jadwal Rapat',
         ]);
     }
 
@@ -52,6 +52,9 @@ class UserController extends Controller
             'snack' => 'required',
             'status' => 'required',
             'submitted_by' => 'required',
+        ], [
+            'tgl_mulai.after' => 'Tanggal mulai harus setelah tanggal dan waktu sekarang.',
+            'tgl_selesai.after' => 'Tanggal selesai harus setelah tanggal dan waktu mulai.',
         ]);
 
         // Validasi apakah ada jadwal yang bertabrakan dalam ruangan yang sama
@@ -71,9 +74,9 @@ class UserController extends Controller
             $conflictingRoom = $existingMeeting->ruangan;
             $conflictingSchedule = "mulai " . $existingMeeting->tgl_mulai . " hingga " . $existingMeeting->tgl_selesai;
 
-            return redirect('/jadwal/input')->with('error', "Ruangan '$conflictingRoom' sudah digunakan pada '$conflictingMeeting' $conflictingSchedule");
+            return back()->withInput()->withError("Ruangan '$conflictingRoom' sudah digunakan pada '$conflictingMeeting' $conflictingSchedule");
         }
-        
+
         JadwalModel::create([
             'nama' => $request->nama,
             'ruangan' => $request->ruangan,
@@ -91,7 +94,7 @@ class UserController extends Controller
     {
         $jadwal = JadwalModel::find($id);
         return view('user.pages.edit-jadwal', [
-            'title' => 'Input Jadwal',
+            'title' => 'Edit Jadwal Rapat',
             'jadwal' => $jadwal,
         ]);
     }

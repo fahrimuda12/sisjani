@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JadwalModel;
 use App\Models\KontenModel;
 use App\Models\RunningTextModel;
+use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 class PublikController extends Controller
@@ -28,7 +29,7 @@ class PublikController extends Controller
         ]);
     }
 
-    public function flip()
+    public function flip(Request $request)
     {
         $today = Carbon::today();
         $now = Carbon::now();
@@ -41,6 +42,9 @@ class PublikController extends Controller
         // $jadwal = JadwalModel::where('tgl_selesai', '>', Carbon::now())->orderBy('tgl_selesai', 'ASC')->get();
         $konten = KontenModel::all();
         $text = RunningTextModel::all();
+        if ($request->ajax()) {
+            return response()->json($jadwal);
+        }
         return view('publik.pages.flip', [
             'title' => 'Flip',
             'jadwal' => $jadwal,

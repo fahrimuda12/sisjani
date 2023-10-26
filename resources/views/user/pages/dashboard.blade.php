@@ -23,52 +23,76 @@
 							</ol>
 						</nav>
 					</div>
-					{{-- <div class="ms-auto">
-						<div class="btn-group">
-							<button type="button" class="btn btn-primary">Settings</button>
-							<button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
-							</button>
-							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
-								<a class="dropdown-item" href="javascript:;">Another action</a>
-								<a class="dropdown-item" href="javascript:;">Something else here</a>
-								<div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
-							</div>
-						</div>
-					</div> --}}
 				</div>
 				<!--end breadcrumb-->
                 <div class="card">
                     <div class="card-body">
-                        {{-- get response --}}
-                        @if (session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>{{ session('success') }}</strong>
+                        <!--get response-->
+                        @if($errors->any())
+                            <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="font-35 text-white"><i class="bx bxs-message-square-x"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-white">Gagal!</h6>
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
+                        @endif
+                        @if (session('success'))
+                            <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="font-35 text-white"><i class="bx bxs-check-circle"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-white">Berhasil!</h6>
+                                        <div class="text-white">{{ session('success') }}</div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {{-- <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>{{ session('success') }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div> --}}
                         @elseif (session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>{{ session('error') }}</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                            <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="font-35 text-white"><i class="bx bxs-message-square-x"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-white">Gagal!</h6>
+                                        <div class="text-white">{{ session('error') }}</div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {{-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{{ session('error') }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div> --}}
                         @endif
                         <div class="d-lg-flex align-items-center mb-4 gap-3">
                             {{-- <div class="position-relative">
-								<input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
+								<input type="text" class="form-control ps-5 radius-30" placeholder="Cari Jadwal Rapat"> <span class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
 							</div> --}}
-                            <div class="ms-auto"><a href="/jadwal/input"
-                                    class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Input
-                                    Jadwal Rapat</a></div>
+                            <div class="ms-auto"><a href="/jadwal/input" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Tambah Jadwal Rapat</a></div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table mb-0">
+                            <table class="table mb-0 table-hover align-middle">
                                 <thead class="table-light">
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Ruangan</th>
-                                        <th>Tanggal</th>
-                                        <th>Mulai</th>
-                                        <th>Selesai</th>
+                                        <th>Tanggal Mulai</th>
+                                        <th>Tanggal Selesai</th>
                                         <th>Snack</th>
                                         <th>Status</th>
                                         <th>Username</th>
@@ -77,22 +101,32 @@
                                 <tbody>
                                     @forelse ($jadwal as $key => $value)
                                         <tr>
-                                            <td>{{ ++$key }}</td>
-                                            <td>{{ $value->nama }}</td>
-                                            <td>{{ $value->ruangan }}</td>
-                                            <td>{{$value->tgl_selesai->format('D d/n/Y')}}</td>
-                                            <td>{{ $value->tgl_mulai->format('H:i') }}</td>
-                                            <td>{{ $value->tgl_selesai->format('H:i') }}</td>
-                                            <td>{{ $value->snack }}</td>
-                                            <td>{{ $value->status }}</td>
-                                            <td>{{ $value->submitted_by }}</td>
+                                            <td class="word-wrap">{{ ++$key }}</td>
+                                            <td class="word-wrap">{{ $value->nama }}</td>
+                                            <td class="word-wrap">{{ $value->ruangan }}</td>
+                                            <td class="word-wrap">{{ $value->tgl_mulai->translatedformat('D d/n/Y H:i') }}</td>
+                                            <td class="word-wrap">{{ $value->tgl_selesai->translatedformat('D d/n/Y H:i') }}</td>
+                                            <td class="word-wrap">{{ $value->snack }}</td>
+                                            <td class="word-wrap">{{ $value->status }}</td>
+                                            <td class="word-wrap">{{ $value->submitted_by }}</td>
+                                            {{-- <td>
+                                                <div class="d-flex order-actions">
+                                                    <a class="btn btn-outline-primary"
+                                                        href="{{ url('/jadwal/' . $value->id . '/edit') }}"><i
+                                                            class='bx bxs-edit'></i></a>
+                                                    <a class="ms-3"
+                                                        href="{{ url('/jadwal/' . $value->id . '/hapus') }}"><i
+                                                            class='bx bxs-trash'></i></a>
+                                                    </button>
+                                                </div>
+                                            </td> --}}
                                             {{-- <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View Details</button></td> --}}
                                         <tr>
 
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="8" class="text-center">Tidak ada data</td>
+                                            <td colspan="10" class="text-center">Tidak ada data</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -116,7 +150,7 @@
     </div>
     <!--end wrapper-->
     <!--start switcher-->
-    <div class="switcher-wrapper">
+    {{-- <div class="switcher-wrapper">
         <div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
         </div>
         <div class="switcher-body">
@@ -209,5 +243,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
