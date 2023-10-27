@@ -13,6 +13,7 @@
         <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
         <link href="{{ asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
         <link href="{{ asset('assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
+	    <link href="{{ asset('assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
         <!-- loader-->
         <link href="{{ asset('assets/css/pace.min.css') }}" rel="stylesheet" />
         <script src="{{ asset('assets/js/pace.min.js') }}"></script>
@@ -38,6 +39,8 @@
         <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
+        <script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+	    <script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
         {{-- <!-- Vector map JavaScript -->
         <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
@@ -51,6 +54,23 @@
         <script src="{{ asset('assets/plugins/notifications/js/notification-custom-script.js') }}"></script> --}}
         <!--app JS-->
         <script src="{{ asset('assets/js/app.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+        <script src="https://cdn.datatables.net/datetime/1.5.1/js/dataTables.dateTime.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#jadwal').DataTable();
+              } );
+        </script>
+        <script>
+            $(document).ready(function() {
+                var table = $('#history').DataTable( {
+                    lengthChange: false,
+                    buttons: [ 'copy', 'excel', 'pdf', 'print']
+                } );
+             
+                table.buttons().container()
+                    .appendTo( '#history_wrapper .col-md-6:eq(0)' );
+            } );
+        </script>
     </body>
-
 </html>

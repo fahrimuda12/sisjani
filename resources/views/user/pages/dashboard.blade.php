@@ -85,7 +85,7 @@
                             <div class="ms-auto"><a href="/jadwal/input" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Tambah Jadwal Rapat</a></div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table mb-0 table-hover align-middle">
+                            <table id="jadwal" class="table mb-0 table-hover align-middle">
                                 <thead class="table-light">
                                     <tr>
                                         <th>No</th>
@@ -121,12 +121,10 @@
                                                 </div>
                                             </td> --}}
                                             {{-- <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View Details</button></td> --}}
-                                        <tr>
-
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="10" class="text-center">Tidak ada data</td>
+                                            <td colspan="8" class="text-center">Tidak ada data</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -134,8 +132,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
         <!--end page wrapper -->

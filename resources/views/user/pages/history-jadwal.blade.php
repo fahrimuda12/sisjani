@@ -16,9 +16,9 @@
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
-								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+								<li class="breadcrumb-item"><a href="/dashboard/"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">History Rapat</li>
+								<li class="breadcrumb-item" aria-current="page">History Rapat</li>
 							</ol>
 						</nav>
 					</div>
@@ -39,7 +39,7 @@
 				<div class="card radius-10">
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table mb-0 table-hover align-middle">
+							<table id="history" class="table mb-0 table-hover align-middle">
 								<thead class="table-light">
 									<tr>
 										<th>No</th>
