@@ -32,7 +32,7 @@
                         <div class="card">
                             <div class="card-body">
                                 {{-- get response --}}
-								@if (session('success'))
+                                @if (session('success'))
                                     <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
                                         <div class="d-flex align-items-center">
                                             <div class="font-35 text-white"><i class="bx bxs-check-circle"></i>
@@ -42,7 +42,8 @@
                                                 <div class="text-white">{{ session('success') }}</div>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
                                     </div>
                                 @elseif (session('error'))
                                     <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show py-2">
@@ -54,30 +55,29 @@
                                                 <div class="text-white">{{ session('error') }}</div>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
                                     </div>
                                 @endif
                                 <form action={{ '/admin/user-management/' . $user->id . '/edit' }} method="POST">
                                     @csrf
                                     <label for="nama" class="form-label">Nama</label>
-                                    <input name="nama" class="form-control mb-3" type="text"
-                                        placeholder="Masukkan Nama Rapat" aria-label="default input example"
-                                        value="{{ $user->name }}" required>
+                                    <input name="nama" id="nama" class="form-control mb-3" type="text"
+                                        aria-label="default input example" value="{{ $user->name }}" required>
                                     @error('nama')
                                         <div class="invalid-feedback">
                                             {{ nama }}
                                         </div>
                                     @enderror
                                     <label for="username" class="form-label">Username</label>
-                                    <input name="username" class="form-control mb-3" type="text"
-                                        placeholder="Masukkan Nama Rapat" aria-label="default input example"
-                                        value="{{ $user->username }}" disabled>
+                                    <input name="username" id="username" class="form-control mb-3" type="text"
+                                        aria-label="default input example" value="{{ $user->username }}" disabled>
                                     <label for="role" class="form-label">Role</label>
-                                    <select name="role" class="form-select mb-3" aria-label="Pilih Ruangan Rapat"
-                                        required>
-                                        <option value="{{ $user->role }}" selected>{{ $user->role }}</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
+                                    <select name="role" id="role" class="form-select mb-3"
+                                        aria-label="Pilih Ruangan Rapat" required>
+                                        <option value="{{ $user->role }}" selected hidden>{{ $user->role }}</option>
+                                        <option value="admin">admin</option>
+                                        <option value="user">user</option>
                                     </select>
                                     @error('role')
                                         <div class="invalid-feedback">
@@ -85,19 +85,19 @@
                                         </div>
                                     @enderror
                                     <label for="password" class="form-label">Password</label>
-                                    <input name="password" class="form-control mb-3" type="password"
+                                    <input name="password" id="password" class="form-control mb-3" type="password"
                                         aria-label="default input example">
                                     @error('password')
                                         <div class="invalid-feedback">
-                                            {{ role }}
+                                            {{ password }}
                                         </div>
                                     @enderror
                                     <label for="password_konfirmasi" class="form-label">Konfirmasi Password</label>
-                                    <input name="password_konfirmasi" class="form-control mb-3" type="password"
-                                        aria-label="default input example">
+                                    <input name="password_konfirmasi" id="password_konfirmasi" class="form-control mb-3"
+                                        type="password" aria-label="default input example">
                                     @error('password_konfirmasi')
                                         <div class="invalid-feedback">
-                                            {{ role }}
+                                            {{ password_konfirmasi }}
                                         </div>
                                     @enderror
                                     <div class="d-md-flex d-grid align-items-center gap-3">
@@ -122,12 +122,21 @@
             </footer>
         </div>
         <!--end wrapper-->
-        {{-- <script>
-            function onlyOne(checkbox) {
-                var checkboxes = document.getElementsByName('check')
-                checkboxes.forEach((item) => {
-                    if (item !== checkbox) item.checked = false
-                })
-            }
-        </script> --}}
+        <!--Password show & hide js -->
+        <script>
+            $(document).ready(function() {
+                $("#show_hide_password a").on('click', function(event) {
+                    event.preventDefault();
+                    if ($('#show_hide_password input').attr("type") == "text") {
+                        $('#show_hide_password input').attr('type', 'password');
+                        $('#show_hide_password i').addClass("bx-hide");
+                        $('#show_hide_password i').removeClass("bx-show");
+                    } else if ($('#show_hide_password input').attr("type") == "password") {
+                        $('#show_hide_password input').attr('type', 'text');
+                        $('#show_hide_password i').removeClass("bx-hide");
+                        $('#show_hide_password i').addClass("bx-show");
+                    }
+                });
+            });
+        </script>
     @endsession

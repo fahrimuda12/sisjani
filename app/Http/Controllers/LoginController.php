@@ -18,27 +18,24 @@ class LoginController extends Controller
     {
         $credentials = $request->validate([
             'username' => 'required',
-            'password' => 'required'
+            'password' => 'required',
         ]);
-        if(Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            if(Auth::user()->role == 'admin')
+            if (Auth::user()->role == 'admin') {
                 return redirect()->intended('admin/dashboard');
-            elseif(Auth::user()->role == 'user');
-                return redirect()->intended('/dashboard');
+            } elseif (Auth::user()->role == 'user');
+            return redirect()->intended('/dashboard');
         }
 
-        return back()->with('loginError', 'Username atau Password salah!');
+        return back()->withInput()->with('error', 'Username atau Password salah!');
     }
 
     public function logout()
     {
         Auth::logout();
-
         request()->session()->invalidate();
-
         request()->session()->regenerateToken();
-
-        return redirect('/login');
+        return redirect('/login')->with('success', 'Anda berhasil logout!');
     }
 }
