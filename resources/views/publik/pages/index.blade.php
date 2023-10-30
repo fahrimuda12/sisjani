@@ -54,7 +54,7 @@ header('refresh:60');
         <div class="flip-wrapper">
             <div class="flip-content">
                 <div class="table-responsive bg-white">
-                    <table class="table mb-0" style="font-size:1.5rem">
+                    <table id="jadwal" class="table mb-0" style="font-size:1.5rem">
                         <thead class="table-light">
                             <tr>
                                 <th>No</th>

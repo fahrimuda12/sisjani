@@ -11,7 +11,7 @@ class UserManagementController extends Controller
     public function index()
     {
         $currentUser = Auth::user()->username;
-        $user = ($currentUser == 'admin') ? User::all() : User::where('username', '!=', 'admin')->get();
+        $user = ($currentUser == 'admin') ? User::all()->orderBy('name', 'ASC') : User::where('username', '!=', 'admin')->orderBy('name', 'ASC')->get();
         return view('admin.pages.user-management.index', [
             'title' => 'User Management',
             'user' => $user,

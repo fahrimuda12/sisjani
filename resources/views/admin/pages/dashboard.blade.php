@@ -105,7 +105,7 @@
                                 </thead>
                                 <tbody>
                                     @forelse ($jadwal as $key => $value)
-                                        <tr>
+                                    <tr class="{{ (strtotime(now()) < strtotime($value['tgl_mulai'])) ? '' : 'table-primary' }}">
                                             <td class="word-wrap">{{ ++$key }}</td>
                                             <td class="word-wrap">{{ $value->nama }}</td>
                                             <td class="word-wrap">{{ $value->ruangan }}</td>
@@ -118,7 +118,7 @@
                                             <td class="word-wrap">{{ $value->submitted_by }}</td>
                                             <td>
                                                 <div class="d-flex order-actions">
-                                                    <a class="btn btn-outline-primary"
+                                                    <a class="btn-outline-primary"
                                                         href="{{ url('/admin/jadwal/' . $value->id . '/edit') }}"><i
                                                             class='bx bxs-edit'></i></a>
                                                     <a class="ms-3 btn-outline-danger" href="javascript:void(0);"

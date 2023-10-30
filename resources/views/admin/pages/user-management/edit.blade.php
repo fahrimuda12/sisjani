@@ -74,10 +74,21 @@
                                         aria-label="default input example" value="{{ $user->username }}" disabled>
                                     <label for="role" class="form-label">Role</label>
                                     <select name="role" id="role" class="form-select mb-3"
-                                        aria-label="Pilih Ruangan Rapat" required>
-                                        <option value="{{ $user->role }}" selected hidden>{{ $user->role }}</option>
+                                        aria-label="default input example" required>
+                                        @php
+                                            $options = array("admin", "user");
+                                            foreach ($options as $option) {
+                                                if ($option == $user->role) {
+                                                    echo "<option value=\"$option\" selected>$option</option>";
+                                                } else {
+                                                    echo "<option value=\"$option\">$option</option>";
+                                                }
+                                            }
+									    @endphp
+
+                                        {{-- <option value="{{ $user->role }}" selected hidden>{{ $user->role }}</option>
                                         <option value="admin">admin</option>
-                                        <option value="user">user</option>
+                                        <option value="user">user</option> --}}
                                     </select>
                                     @error('role')
                                         <div class="invalid-feedback">

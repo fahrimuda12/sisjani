@@ -88,14 +88,25 @@
                                 @enderror
 								<label class="form-label">Ruang Rapat</label>
 								<select name="ruangan" class="form-select mb-3" aria-label="Pilih Ruangan Rapat" required>
-									<option value="{{ $jadwal->ruangan }}" selected hidden>{{ $jadwal->ruangan }}</option>
+									@php
+										$options = array("R.Bromo", "R.EOC", "R.Lawu", "R.Raung", "Hall GSG", "R.Kelas Kelud", "R.Procurement GSG Lt.II");
+										foreach ($options as $option) {
+											if ($option == $jadwal->ruangan) {
+												echo "<option value=\"$option\" selected>$option</option>";
+											} else {
+												echo "<option value=\"$option\">$option</option>";
+											}
+										}
+									@endphp
+
+									{{-- <option value="{{ $jadwal->ruangan }}" selected hidden>{{ $jadwal->ruangan }}</option>
 									<option value="R.Bromo">R.Bromo</option>
 									<option value="R.EOC">R.EOC</option>
 									<option value="R.Lawu">R.Lawu</option>
 									<option value="R.Raung">R.Raung</option>
 									<option value="Hall GSG">Hall GSG</option>
 									<option value="R.Kelas Kelud">R.Kelas Kelud</option> 
-									<option value="R.Procurement GSG Lt.II">R.Procurement GSG Lt.II</option>
+									<option value="R.Procurement GSG Lt.II">R.Procurement GSG Lt.II</option> --}}
 								</select>
 								<label class="form-label">Tanggal Mulai</label>
 								<input name="tgl_mulai" class="form-control mb-3" type="datetime-local" class="form-control" value="{{ $jadwal->tgl_mulai }}" required>
@@ -107,9 +118,20 @@
 								</div>
 								<label class="form-label">Status Rapat</label>
 								<select name="status" class="form-select mb-3" aria-label="Pilih Status Rapat" required>
-									<option value="{{ $jadwal->status }}" selected hidden>{{ $jadwal->status }}</option>
+									@php
+										$options = array("Internal", "Eksternal");
+										foreach ($options as $option) {
+											if ($option == $jadwal->status) {
+												echo "<option value=\"$option\" selected>$option</option>";
+											} else {
+												echo "<option value=\"$option\">$option</option>";
+											}
+										}
+									@endphp
+
+									{{-- <option value="{{ $jadwal->status }}" selected hidden>{{ $jadwal->status }}</option>
 									<option value="Internal">Internal</option>
-									<option value="Eksternal">Eksternal</option>
+									<option value="Eksternal">Eksternal</option> --}}
 								</select>
 								{{-- <div class="form-check">
 								<input class="form-check-input" type="checkbox" value="Internal" id="flexCheckIndeterminate" onclick="onlyOne(this)">
