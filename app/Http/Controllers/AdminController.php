@@ -87,7 +87,7 @@ class AdminController extends Controller
             'submitted_by' => $request->submitted_by,
         ]);
 
-        return redirect('/admin/dashboard')->with('success', 'Data berhasil ditambahkan');
+        return redirect('/admin/dashboard')->withSuccess('Data berhasil ditambahkan');
     }
 
     public function editJadwal($id)
@@ -150,13 +150,13 @@ class AdminController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect('/admin/dashboard')->with('success', 'Data berhasil diperbarui');
+        return redirect('/admin/dashboard')->withSuccess('Data berhasil diperbarui');
     }
 
     public function deleteJadwal($id)
     {
         JadwalModel::destroy($id);
 
-        return redirect('/admin/dashboard')->with('success', 'Data berhasil dihapus');
+        return redirect('/admin/dashboard')->withSuccess('Data berhasil dihapus');
     }
 }

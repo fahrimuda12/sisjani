@@ -10,6 +10,7 @@ class KontenModel extends Model
     use HasFactory;
 
     public $table = 'konten';
+    public $timestamps = true;
 
     protected $fillable = [
         'foto',

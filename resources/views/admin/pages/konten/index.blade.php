@@ -28,7 +28,24 @@
                 <div class="card">
                     <div class="card-body">
                         {{-- get response --}}
-                        @if (session('success'))
+                        @if ($errors->any())
+                            <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="font-35 text-white"><i class="bx bxs-message-square-x"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 text-white">Gagal!</h6>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @elseif (session('success'))
                             <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
                                 <div class="d-flex align-items-center">
                                     <div class="font-35 text-white"><i class="bx bxs-check-circle"></i>
@@ -64,7 +81,7 @@
                                     Konten</a></div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table mb-0">
+                            <table id="konten" class="table mb-0 table-hover align-middle">
                                 <thead class="table-light">
                                     <tr>
                                         <th>No</th>
@@ -89,8 +106,6 @@
                                                 </div>
                                             </td>
                                             {{-- <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View Details</button></td> --}}
-                                        <tr>
-
                                         </tr>
                                     @empty
                                         <tr>

@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserManagementController extends Controller
 {
     public function index()
     {
-        $user = User::all();
+        $currentUser = Auth::user()->username;
+        $user = ($currentUser == 'admin') ? User::all() : User::where('username', '!=', 'admin')->get();
         return view('admin.pages.user-management.index', [
             'title' => 'User Management',
             'user' => $user,
@@ -28,7 +30,7 @@ class UserManagementController extends Controller
 
         $this->validate($request, [
             'nama' => 'required',
-            'username' => 'required|unique:users',
+            'username' => 'required|alpha_dash|unique:users',
             'role' => 'required',
             'password' => 'required',
             'password_konfirmasi' => 'required|same:password',
@@ -74,6 +76,11 @@ class UserManagementController extends Controller
         if ($havePassword) {
             $user->password = bcrypt($request->input('password'));
         }
+
+        if ($user->role == 'admin' && $request->input('role') != 'admin') {
+            return redirect()->to('/admin/user-management')->withError('Anda tidak bisa mengubah akun ini menjadi user!');
+        }
+
         $user->save();
 
         return redirect()->to('/admin/user-management')->withSuccess('Data berhasil diubah');
@@ -81,7 +88,18 @@ class UserManagementController extends Controller
 
     public function destroy($id)
     {
-        $user = User::destroy($id);
+        $currentUser = Auth::user(); 
+        $user = User::find($id);
+
+        if ($user->id == $currentUser->id) {
+            return redirect()->to('/admin/user-management')->withError('Anda tidak bisa menghapus akun Anda sendiri!');
+        }
+        
+        if ($currentUser->username != 'admin') {
+            return redirect()->to('/admin/user-management')->withError('Anda tidak bisa menghapus akun admin!');
+        }
+
+        $user->delete();
         return redirect()->to('/admin/user-management')->withSuccess('Data berhasil dihapus');
     }
 

@@ -59,6 +59,9 @@
         <script>
             $(document).ready(function() {
                 $('#jadwal').DataTable();
+                $('#user-management').DataTable();
+                $('#konten').DataTable();
+                $('#running-text').DataTable();
               } );
         </script>
         <script>

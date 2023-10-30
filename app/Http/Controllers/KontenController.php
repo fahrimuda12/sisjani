@@ -28,7 +28,10 @@ class KontenController extends Controller
     {
 
         $this->validate($request, [
-            'foto' => 'required|mimes:png,jpg,jpeg|max:10240',
+            'foto' => 'required|mimes:png,jpg,jpeg,img|max:5120',
+        ], [
+            'foto.mimes' => 'Ekstensi file harus png, jpg, jpeg, img',
+            'foto.max' => 'Ukuran file maksimum adalah 5 MB',
         ]);
 
         if (!empty($request->file('foto'))) {
@@ -36,14 +39,14 @@ class KontenController extends Controller
             $filename = date('H.i.s-d_m_Y') . '.' . $file->getClientOriginalExtension();
             $file->move(public_path() . '/slider/', $filename);
         } else {
-            return redirect()->to('/admin/konten')->withErro('Foto kosong');
+            return redirect('/admin/konten')->withErro('Foto kosong');
         }
 
         KontenModel::create([
             'foto' => $filename,
         ]);
 
-        return redirect()->to('/admin/konten')->withSuccess('Data berhasil ditambahkan');
+        return redirect('/admin/konten')->withSuccess('Data berhasil ditambahkan');
     }
 
     public function edit($id)

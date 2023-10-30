@@ -10,7 +10,7 @@ class RunningTextModel extends Model
     use HasFactory;
 
     public $table = 'running';
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'text',

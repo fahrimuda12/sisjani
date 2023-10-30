@@ -64,7 +64,7 @@
                                     User</a></div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table mb-0">
+                            <table id="user-management" class="table mb-0 table-hover align-middle">
                                 <thead class="table-light">
                                     <tr>
                                         <th>No</th>
@@ -77,10 +77,10 @@
                                 <tbody>
                                     @forelse ($user as $key => $value)
                                         <tr>
-                                            <td>{{ ++$key }}</td>
-                                            <td>{{ $value->name }}</td>
-                                            <td>{{ $value->username }}</td>
-                                            <td>{{ $value->role }}</td>
+                                            <td class="word-wrap">{{ ++$key }}</td>
+                                            <td class="word-wrap">{{ $value->name }}</td>
+                                            <td class="word-wrap">{{ $value->username }}</td>
+                                            <td class="word-wrap">{{ $value->role }}</td>
                                             <td>
                                                 <div class="d-flex order-actions">
                                                     <a class="btn btn-outline-primary"

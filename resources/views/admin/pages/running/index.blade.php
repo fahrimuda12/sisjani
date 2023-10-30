@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table mb-0">
+                            <table id="running-text" class="table mb-0 table-hover align-middle">
                                 <thead class="table-light">
                                     <tr>
                                         <th>No</th>
@@ -90,8 +90,6 @@
                                                 </div>
                                             </td>
                                             {{-- <td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View Details</button></td> --}}
-                                        <tr>
-
                                         </tr>
                                     @empty
                                         <tr>
