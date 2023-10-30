@@ -11,7 +11,7 @@ class UserManagementController extends Controller
     public function index()
     {
         $currentUser = Auth::user()->username;
-        $user = ($currentUser == 'admin') ? User::all()->orderBy('name', 'ASC') : User::where('username', '!=', 'admin')->orderBy('name', 'ASC')->get();
+        $user = ($currentUser == 'admin') ? User::orderBy('name', 'ASC')->get() : User::where('username', '!=', 'admin')->orderBy('name', 'ASC')->get();
         return view('admin.pages.user-management.index', [
             'title' => 'User Management',
             'user' => $user,
@@ -95,9 +95,9 @@ class UserManagementController extends Controller
             return redirect()->to('/admin/user-management')->withError('Anda tidak bisa menghapus akun Anda sendiri!');
         }
         
-        if ($currentUser->username != 'admin') {
-            return redirect()->to('/admin/user-management')->withError('Anda tidak bisa menghapus akun admin!');
-        }
+        // if ($currentUser->username != 'admin') {
+        //     return redirect()->to('/admin/user-management')->withError('Anda tidak bisa menghapus akun admin!');
+        // }
 
         $user->delete();
         return redirect()->to('/admin/user-management')->withSuccess('Data berhasil dihapus');
