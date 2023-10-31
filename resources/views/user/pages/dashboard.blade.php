@@ -100,7 +100,7 @@
                                 </thead>
                                 <tbody>
                                     @forelse ($jadwal as $key => $value)
-                                        <tr>
+                                        <tr class="{{ (strtotime(now()) < strtotime($value['tgl_mulai'])) ? '' : 'table-primary' }}">
                                             <td class="word-wrap">{{ ++$key }}</td>
                                             <td class="word-wrap">{{ $value->nama }}</td>
                                             <td class="word-wrap">{{ $value->ruangan }}</td>
